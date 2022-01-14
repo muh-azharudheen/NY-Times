@@ -25,16 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        ViewController()
+        NewsListViewController()
     }
-}
-
-class ViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-    }
-    
 }
