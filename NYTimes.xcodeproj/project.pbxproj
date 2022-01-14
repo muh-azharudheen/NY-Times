@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2EB7FA0727920AE8005A1DC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA0627920AE8005A1DC2 /* AppDelegate.swift */; };
 		2EB7FA0927920AE8005A1DC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA0827920AE8005A1DC2 /* SceneDelegate.swift */; };
-		2EB7FA0B27920AE8005A1DC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA0A27920AE8005A1DC2 /* ViewController.swift */; };
-		2EB7FA0E27920AE8005A1DC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB7FA0C27920AE8005A1DC2 /* Main.storyboard */; };
 		2EB7FA1027920AE9005A1DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB7FA0F27920AE9005A1DC2 /* Assets.xcassets */; };
 		2EB7FA1327920AE9005A1DC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,8 +17,6 @@
 		2EB7FA0327920AE8005A1DC2 /* NYTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB7FA0627920AE8005A1DC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EB7FA0827920AE8005A1DC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2EB7FA0A27920AE8005A1DC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2EB7FA0D27920AE8005A1DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2EB7FA0F27920AE9005A1DC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EB7FA1227920AE9005A1DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EB7FA1427920AE9005A1DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,8 +54,6 @@
 			children = (
 				2EB7FA0627920AE8005A1DC2 /* AppDelegate.swift */,
 				2EB7FA0827920AE8005A1DC2 /* SceneDelegate.swift */,
-				2EB7FA0A27920AE8005A1DC2 /* ViewController.swift */,
-				2EB7FA0C27920AE8005A1DC2 /* Main.storyboard */,
 				2EB7FA0F27920AE9005A1DC2 /* Assets.xcassets */,
 				2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */,
 				2EB7FA1427920AE9005A1DC2 /* Info.plist */,
@@ -127,7 +121,6 @@
 			files = (
 				2EB7FA1327920AE9005A1DC2 /* LaunchScreen.storyboard in Resources */,
 				2EB7FA1027920AE9005A1DC2 /* Assets.xcassets in Resources */,
-				2EB7FA0E27920AE8005A1DC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +131,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EB7FA0B27920AE8005A1DC2 /* ViewController.swift in Sources */,
 				2EB7FA0727920AE8005A1DC2 /* AppDelegate.swift in Sources */,
 				2EB7FA0927920AE8005A1DC2 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +139,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2EB7FA0C27920AE8005A1DC2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2EB7FA0D27920AE8005A1DC2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -293,7 +277,6 @@
 				INFOPLIST_FILE = NYTimes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +303,6 @@
 				INFOPLIST_FILE = NYTimes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
