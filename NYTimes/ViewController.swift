@@ -1,0 +1,19 @@
+//
+//  ViewController.swift
+//  NYTimes
+//
+//  Created by Muhammed Azharudheen on 24/10/1400 AP.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+
+}
+
