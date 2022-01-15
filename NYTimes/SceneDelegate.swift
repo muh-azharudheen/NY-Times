@@ -25,6 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        NewsListViewController()
+        UIViewController()
     }
 }
