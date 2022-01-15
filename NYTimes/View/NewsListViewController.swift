@@ -36,23 +36,10 @@ class NewsListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "NewsListCell", bundle: .main), forCellReuseIdentifier: "NewsListCell")
+        
+        setupTableView()
         activityIndicatorView.startAnimating()
         loadList()
-    }
-    
-    private func loadList() {
-        loader.loadList { [weak self] result in
-            self?.activityIndicatorView.stopAnimating()
-            switch result {
-            case .success(let lists):
-                self?.datasource = lists
-                self?.tableView.reloadData()
-            case .failure:
-                let alert = UIAlertController(title: "Error", message: "An Unknown Error Occured", preferredStyle: .alert)
-                self?.present(alert, animated: true, completion: nil)
-            }
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,5 +50,34 @@ class NewsListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsListCell") as! NewsListCell
         cell.item = datasource[indexPath.row]
         return cell
+    }
+}
+
+private extension NewsListViewController {
+    
+    func setupTableView() {
+        tableView.register(UINib(nibName: "NewsListCell", bundle: .main), forCellReuseIdentifier: "NewsListCell")
+    }
+    
+    func loadList() {
+        loader.loadList { [weak self] result in
+            self?.activityIndicatorView.stopAnimating()
+            switch result {
+            case .success(let lists):
+                self?.didFetchLists(with: lists)
+            case .failure:
+                self?.didThrowError()
+            }
+        }
+    }
+    
+    private func didFetchLists(with lists: [NewsList]) {
+        datasource = lists
+        tableView.reloadData()
+    }
+    
+    private func didThrowError() {
+        let alert = UIAlertController(title: "Error", message: "An Unknown Error Occured", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
     }
 }
