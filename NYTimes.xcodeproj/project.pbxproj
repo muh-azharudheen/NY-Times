@@ -12,7 +12,18 @@
 		2EB7FA1027920AE9005A1DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB7FA0F27920AE9005A1DC2 /* Assets.xcassets */; };
 		2EB7FA1327920AE9005A1DC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */; };
 		2EB7FA1D27920F78005A1DC2 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA1C27920F78005A1DC2 /* NewsListViewController.swift */; };
+		2EB7FA422792A3B7005A1DC2 /* NewsListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA412792A3B7005A1DC2 /* NewsListViewControllerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2EB7FA432792A3B7005A1DC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EB7F9FB27920AE8005A1DC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EB7FA0227920AE8005A1DC2;
+			remoteInfo = NYTimes;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2EB7FA0327920AE8005A1DC2 /* NYTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +33,19 @@
 		2EB7FA1227920AE9005A1DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EB7FA1427920AE9005A1DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EB7FA1C27920F78005A1DC2 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
+		2EB7FA3F2792A3B7005A1DC2 /* NewsListViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsListViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EB7FA412792A3B7005A1DC2 /* NewsListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2EB7FA0027920AE8005A1DC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EB7FA3C2792A3B7005A1DC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB7FA0527920AE8005A1DC2 /* NYTimes */,
+				2EB7FA402792A3B7005A1DC2 /* NewsListViewControllerTests */,
 				2EB7FA0427920AE8005A1DC2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB7FA0327920AE8005A1DC2 /* NYTimes.app */,
+				2EB7FA3F2792A3B7005A1DC2 /* NewsListViewControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,6 +94,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2EB7FA402792A3B7005A1DC2 /* NewsListViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7FA412792A3B7005A1DC2 /* NewsListViewControllerTests.swift */,
+			);
+			path = NewsListViewControllerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,6 +122,24 @@
 			productReference = 2EB7FA0327920AE8005A1DC2 /* NYTimes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2EB7FA3E2792A3B7005A1DC2 /* NewsListViewControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EB7FA472792A3B7005A1DC2 /* Build configuration list for PBXNativeTarget "NewsListViewControllerTests" */;
+			buildPhases = (
+				2EB7FA3B2792A3B7005A1DC2 /* Sources */,
+				2EB7FA3C2792A3B7005A1DC2 /* Frameworks */,
+				2EB7FA3D2792A3B7005A1DC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EB7FA442792A3B7005A1DC2 /* PBXTargetDependency */,
+			);
+			name = NewsListViewControllerTests;
+			productName = NewsListViewControllerTests;
+			productReference = 2EB7FA3F2792A3B7005A1DC2 /* NewsListViewControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -104,6 +152,10 @@
 				TargetAttributes = {
 					2EB7FA0227920AE8005A1DC2 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					2EB7FA3E2792A3B7005A1DC2 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 2EB7FA0227920AE8005A1DC2;
 					};
 				};
 			};
@@ -121,6 +173,7 @@
 			projectRoot = "";
 			targets = (
 				2EB7FA0227920AE8005A1DC2 /* NYTimes */,
+				2EB7FA3E2792A3B7005A1DC2 /* NewsListViewControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -132,6 +185,13 @@
 			files = (
 				2EB7FA1327920AE9005A1DC2 /* LaunchScreen.storyboard in Resources */,
 				2EB7FA1027920AE9005A1DC2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EB7FA3D2792A3B7005A1DC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +208,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2EB7FA3B2792A3B7005A1DC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EB7FA422792A3B7005A1DC2 /* NewsListViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2EB7FA442792A3B7005A1DC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EB7FA0227920AE8005A1DC2 /* NYTimes */;
+			targetProxy = 2EB7FA432792A3B7005A1DC2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */ = {
@@ -330,6 +406,40 @@
 			};
 			name = Release;
 		};
+		2EB7FA452792A3B7005A1DC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.company.NewsListViewControllerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTimes.app/NYTimes";
+			};
+			name = Debug;
+		};
+		2EB7FA462792A3B7005A1DC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.company.NewsListViewControllerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTimes.app/NYTimes";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -347,6 +457,15 @@
 			buildConfigurations = (
 				2EB7FA1827920AE9005A1DC2 /* Debug */,
 				2EB7FA1927920AE9005A1DC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2EB7FA472792A3B7005A1DC2 /* Build configuration list for PBXNativeTarget "NewsListViewControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EB7FA452792A3B7005A1DC2 /* Debug */,
+				2EB7FA462792A3B7005A1DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

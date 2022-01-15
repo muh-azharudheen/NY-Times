@@ -7,12 +7,14 @@
 
 import UIKit
 
+protocol NewsListLoader { }
+
 class NewsListViewController: UITableViewController {
     
-    private var viewModel: NewsListViewModel
+    private var loader: NewsListLoader
     
-    init(viewModel: NewsListViewModel) {
-        self.viewModel = viewModel
+    init(loader: NewsListLoader) {
+        self.loader = loader
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,8 +26,4 @@ class NewsListViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
-}
-
-class NewsListViewModel {
-    
 }
