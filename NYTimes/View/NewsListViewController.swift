@@ -15,6 +15,7 @@ protocol NewsListLoader {
 class NewsListViewController: UITableViewController {
     
     private var loader: NewsListLoader
+    private var datasource: [List] = []
     
     init(loader: NewsListLoader) {
         self.loader = loader
@@ -28,7 +29,18 @@ class NewsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loader.loadList { _ in }
+        loader.loadList { [weak self] result in
+            switch result {
+            case .success(let lists):
+                self?.datasource = lists
+                self?.tableView.reloadData()
+            case .failure(let failure): ()
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datasource.count
     }
 }
 
