@@ -63,11 +63,44 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.isAnimating(), "Expected to stop animation of activity indicator when loader fails on delivering lists")
     }
     
+    func test_loadLists_showsAlertWhileCompletesWithaFailure() {
+        let (sut, loader) = makeSUT()
+        setAsRoot(controller: sut)
+        
+        sut.loadViewIfNeeded()
+        loader.completeListLoading(with: NSError(domain: "Any error", code: 0, userInfo: nil))
+        
+        guard let alert = presentedViewController(on: sut) as? UIAlertController else {
+            XCTFail("Expected to present an alert, while load fails with an error")
+            return
+        }
+        
+        XCTAssertEqual(alert.title, "Error")
+        XCTAssertEqual(alert.message, "An Unknown Error Occured")
+        XCTAssertEqual(alert.actions, [])
+    }
     
     private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListLoaderSpy) {
         let loader = NewsListLoaderSpy()
         let sut = NewsListViewController(loader: loader)
         return (sut, loader)
+    }
+    
+    private func setAsRoot(controller: UIViewController) {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        window.rootViewController = controller
+    }
+    
+    private func presentedViewController(on sut: UIViewController) -> UIViewController? {
+        let expectation = expectation(description: "Waiting for presenting animation to complete")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 2)
+        return sut.presentedViewController
     }
 }
 
