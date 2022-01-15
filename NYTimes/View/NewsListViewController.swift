@@ -28,7 +28,10 @@ class NewsListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadList()
+    }
+    
+    private func loadList() {
         loader.loadList { [weak self] result in
             switch result {
             case .success(let lists):
@@ -47,7 +50,6 @@ class NewsListViewController: UITableViewController {
 }
 
 extension NewsListViewController {
-    
     struct List {
         let title: String
         let author: String
