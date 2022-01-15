@@ -9,7 +9,13 @@ import UIKit
 
 class NewsListCell: UITableViewCell {
     
-    
+    var item: NewsList? {
+        didSet {
+            labelTitle?.text = item?.title
+            labelAuthor?.text = item?.author
+            labelDate?.text = item?.dateString
+        }
+    }
     
     @IBOutlet weak var labelTitle: UILabel?
     @IBOutlet weak var labelAuthor: UILabel?

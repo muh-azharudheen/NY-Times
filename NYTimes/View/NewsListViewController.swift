@@ -58,6 +58,7 @@ class NewsListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsListCell") as! NewsListCell
+        cell.item = datasource[indexPath.row]
         return cell
     }
 }
