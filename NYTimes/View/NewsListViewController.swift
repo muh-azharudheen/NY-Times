@@ -7,7 +7,9 @@
 
 import UIKit
 
-protocol NewsListLoader { }
+protocol NewsListLoader {
+    func loadNews()
+}
 
 class NewsListViewController: UITableViewController {
     
@@ -24,6 +26,7 @@ class NewsListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        
+        loader.loadNews()
     }
 }
