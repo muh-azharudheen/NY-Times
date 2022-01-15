@@ -23,6 +23,7 @@ class NewsListViewController: UITableViewController {
     
     private var loader: NewsListLoader
     private var datasource: [NewsList] = []
+    private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: view.frame)
     
     init(loader: NewsListLoader) {
         self.loader = loader
@@ -36,11 +37,13 @@ class NewsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "NewsListCell", bundle: .main), forCellReuseIdentifier: "NewsListCell")
+        activityIndicatorView.startAnimating()
         loadList()
     }
     
     private func loadList() {
         loader.loadList { [weak self] result in
+            self?.activityIndicatorView.stopAnimating()
             switch result {
             case .success(let lists):
                 self?.datasource = lists

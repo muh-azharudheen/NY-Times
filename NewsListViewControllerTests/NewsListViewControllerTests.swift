@@ -38,6 +38,32 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRenderedLists(), list2.count, "Expected list counts when loader completes with many lists")
     }
     
+    func test_activityIndicator_onSuccessFullDeliveryOfItems() {
+        
+        let list = [NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021")]
+
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.isAnimating(),"Expected to animate activity indicator view once view is loaded")
+        
+        loader.completeListLoading(with: list)
+        
+        XCTAssertFalse(sut.isAnimating(), "Expected to stop animation of activity indicator once loader completes with lists")
+    }
+    
+    func test_activityIndicator_onFailure() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.isAnimating(),"Expected to animate activity indicator view once view is loaded")
+        
+        loader.completeListLoading(with: NSError(domain: "Any error", code: 0, userInfo: nil))
+        
+        XCTAssertFalse(sut.isAnimating(), "Expected to stop animation of activity indicator when loader fails on delivering lists")
+    }
+    
+    
     private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListLoaderSpy) {
         let loader = NewsListLoaderSpy()
         let sut = NewsListViewController(loader: loader)
@@ -46,6 +72,10 @@ class NewsListViewControllerTests: XCTestCase {
 }
 
 private extension NewsListViewController {
+    
+    func isAnimating() -> Bool {
+        activityIndicatorView.isAnimating
+    }
 
     func numberOfRenderedLists() -> Int {
         return tableView.numberOfRows(inSection: listSection)
@@ -66,5 +96,9 @@ class NewsListLoaderSpy: NewsListLoader {
     
     func completeListLoading(with list: [NewsList]) {
         completion?(.success(list))
+    }
+    
+    func completeListLoading(with error: Error) {
+        completion?(.failure(error))
     }
 }
