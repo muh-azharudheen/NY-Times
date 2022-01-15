@@ -12,11 +12,11 @@ class NewsListViewControllerTests: XCTestCase {
     
     func test_loadListCompletion_rendersSuccesfullyLoadedList() {
         
-        let list0: [NewsListViewController.List] = []
+        let list0: [NewsList] = []
         
-        let list1 = [NewsListViewController.List(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021")]
+        let list1 = [NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021")]
 
-        let list2 = [NewsListViewController.List(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021"), NewsListViewController.List(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021") ]
+        let list2 = [NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021"), NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021") ]
 
         
         let (sut, loader) = makeSUT()
@@ -64,7 +64,7 @@ class NewsListLoaderSpy: NewsListLoader {
         self.completion = completion
     }
     
-    func completeListLoading(with list: [NewsListViewController.List]) {
+    func completeListLoading(with list: [NewsList]) {
         completion?(.success(list))
     }
 }
