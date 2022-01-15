@@ -10,19 +10,6 @@ import XCTest
 
 class NewsListViewControllerTests: XCTestCase {
     
-    func test_init_doesNotFetchList() {
-        let (_, loader) = makeSUT()
-        XCTAssertEqual(loader.loadCallCount, 0, "Expected No Load request before view is loaded")
-    }
-    
-    func test_loadList_whenViewIsLoaded() {
-        
-        let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(loader.loadCallCount, 1, "Expect a loading request once view is loaded")
-    }
-    
     func test_loadListCompletion_rendersSuccesfullyLoadedList() {
         
         let list0: [NewsListViewController.List] = []
@@ -70,13 +57,10 @@ private extension NewsListViewController {
 }
 
 class NewsListLoaderSpy: NewsListLoader {
-    
-    var loadCallCount = 0
-    
+        
     private var completion: ((NewsListLoader.Result) -> Void)?
 
     func loadList(completion: @escaping (NewsListLoader.Result) -> Void) {
-        loadCallCount += 1
         self.completion = completion
     }
     

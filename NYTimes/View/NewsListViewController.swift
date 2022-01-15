@@ -34,7 +34,9 @@ class NewsListViewController: UITableViewController {
             case .success(let lists):
                 self?.datasource = lists
                 self?.tableView.reloadData()
-            case .failure(let failure): ()
+            case .failure:
+                let alert = UIAlertController(title: "Error", message: "An Unknown Error Occured", preferredStyle: .alert)
+                self?.present(alert, animated: true, completion: nil)
             }
         }
     }
