@@ -10,12 +10,12 @@ import XCTest
 
 class NewsListViewControllerTests: XCTestCase {
     
-    func test_init_doesNotFetchNews() {
+    func test_init_doesNotFetchList() {
         let (_, loader) = makeSUT()
         XCTAssertEqual(loader.loadCallCount, 0, "Expected No Load request before view is loaded")
     }
     
-    func test_loadNews_whenViewIsLoaded() {
+    func test_loadList_whenViewIsLoaded() {
         
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
