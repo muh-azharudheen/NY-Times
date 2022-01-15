@@ -17,7 +17,7 @@ class NewsListCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var labelTitle: UILabel?
-    @IBOutlet weak var labelAuthor: UILabel?
-    @IBOutlet weak var labelDate: UILabel?
+    @IBOutlet private (set) weak var labelTitle: UILabel?
+    @IBOutlet private (set) weak var labelAuthor: UILabel?
+    @IBOutlet private (set) weak var labelDate: UILabel?
 }

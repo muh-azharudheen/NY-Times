@@ -80,6 +80,32 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(alert.actions, [])
     }
     
+    func test_cell_onSuccessfullLoadingOfNews() {
+        
+        let list0 = NewsList(title: "title1", author: "Author1", imageURL: nil, dateString: "01-01-2022")
+        let list1 = NewsList(title: "title2", author: "Author2", imageURL: nil, dateString: "01-01-2022")
+        let list2 = NewsList(title: "title3", author: "Author3", imageURL: nil, dateString: "01-01-2022")
+        
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        loader.completeListLoading(with: [list0, list1, list2])
+        
+        test(cell: sut.cell(for: 0) as? NewsListCell, with: list0)
+        test(cell: sut.cell(for: 1) as? NewsListCell, with: list1)
+        test(cell: sut.cell(for: 2) as? NewsListCell, with: list2)
+    }
+    
+    private func test(cell: NewsListCell?, with list: NewsList, file: StaticString = #filePath, line: UInt = #line) {
+        guard let cell = cell else {
+            XCTFail("Expected cell with type NewsListCell", file: file, line: line)
+            return
+        }
+        XCTAssertEqual(cell.labelTitle?.text, list.title, file: file, line: line)
+        XCTAssertEqual(cell.labelAuthor?.text, list.author, file: file, line: line)
+        XCTAssertEqual(cell.labelDate?.text, list.dateString, file: file, line: line)
+    }
+    
     private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListLoaderSpy) {
         let loader = NewsListLoaderSpy()
         let sut = NewsListViewController(loader: loader)
@@ -105,6 +131,12 @@ class NewsListViewControllerTests: XCTestCase {
 }
 
 private extension NewsListViewController {
+    
+    func cell(for index: Int) -> UITableViewCell? {
+        let ds = tableView.dataSource
+        let index = IndexPath(row: index, section: listSection)
+        return ds?.tableView(tableView, cellForRowAt: index)
+    }
     
     func isAnimating() -> Bool {
         activityIndicatorView.isAnimating
