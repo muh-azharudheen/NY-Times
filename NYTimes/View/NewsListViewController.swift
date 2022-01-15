@@ -8,7 +8,8 @@
 import UIKit
 
 protocol NewsListLoader {
-    func loadNews()
+    typealias Result = Swift.Result<[NewsListViewController.List], Error>
+    func loadList(completion: @escaping (Result) -> Void)
 }
 
 class NewsListViewController: UITableViewController {
@@ -27,6 +28,16 @@ class NewsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loader.loadNews()
+        loader.loadList { _ in }
+    }
+}
+
+extension NewsListViewController {
+    
+    struct List {
+        let title: String
+        let author: String
+        let imageURL: URL?
+        let dateString: String
     }
 }

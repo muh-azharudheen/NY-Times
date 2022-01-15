@@ -23,7 +23,6 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 1, "Expect a loading request once view is loaded")
     }
     
-    
     private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListLoaderSpy) {
         let loader = NewsListLoaderSpy()
         let sut = NewsListViewController(loader: loader)
@@ -34,8 +33,8 @@ class NewsListViewControllerTests: XCTestCase {
 class NewsListLoaderSpy: NewsListLoader {
     
     var loadCallCount = 0
-    
-    func loadNews() {
+
+    func loadList(completion: @escaping (NewsListLoader.Result) -> Void) {
         loadCallCount += 1
     }
 }
