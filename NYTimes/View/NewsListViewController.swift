@@ -23,7 +23,6 @@ struct NewsList {
 class NewsListViewController: UITableViewController {
     
     private var viewModel: NewsListViewModelProtocol
-//    private var datasource: [NewsList] = []
     private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: view.frame)
     
     init(viewModel: NewsListViewModelProtocol) {

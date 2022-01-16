@@ -21,6 +21,12 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(viewModel.loadNewsCount, 1, "Expected Load News function invoked on viewDidload")
     }
     
+    func test_loaderStartAnimatingOnceViewIsLoaded() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isAnimating(), "Expected to show loader once view is loaded")
+    }
+    
     func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
         let viewModel = NewsListViewModelSpy()
         let sut = NewsListViewController(viewModel: viewModel)
