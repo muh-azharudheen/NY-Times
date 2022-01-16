@@ -21,6 +21,15 @@ class NewsListViewModelTests: XCTestCase {
         XCTAssertEqual(loader.fetchNewsCount, 1, "Expected loadList calls for fetching News")
     }
     
+    func test_numberOfLists_onSuccessfullyLoadedNews() {
+        
+        let (sut, loader) = makeSut()
+        sut.loadList { _ in }
+        
+        loader.complete(with: [])
+        XCTAssertEqual(sut.numberOfLists(), 0, "Expected 0 items, when loader completes with empty lists")
+    }
+    
     func makeSut() -> (NewsListViewModel, NewsLoaderSpy) {
         let loader = NewsLoaderSpy()
         let sut = NewsListViewModel(loader: loader)
@@ -31,8 +40,14 @@ class NewsListViewModelTests: XCTestCase {
 class NewsLoaderSpy: NewsLoader {
     
     var fetchNewsCount = 0
+    var completion: ((NewsLoader.Result) -> Void)?
     
     func fetchNews(completion: @escaping (NewsLoader.Result) -> Void) {
         fetchNewsCount += 1
+        self.completion = completion
+    }
+    
+    func complete(with news: [News]) {
+        completion?(.success(news))
     }
 }
