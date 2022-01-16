@@ -21,6 +21,34 @@ class NewsListViewModelTests: XCTestCase {
         XCTAssertEqual(loader.fetchNewsCount, 1, "Expected loadList calls for fetching News")
     }
     
+    func test_loadListCompletesWithSuccessOnSuccesfullDeliveryOfNews() {
+        let (sut, loader) = makeSut()
+        let exp = expectation(description: "Waiting for newsloader to complete")
+        sut.loadList {
+            if case Result.success = $0 {
+                exp.fulfill()
+            }
+        }
+        loader.complete(with: [])
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func test_loadListCompleteWithFailureOnFailureOfNewsDelivery() {
+        let (sut, loader) = makeSut()
+        let exp = expectation(description: "Waiting for newsloader to complete")
+        let error = NSError(domain: "anyError", code: 0, userInfo: nil)
+        var receivedError: Error?
+        sut.loadList {
+            if case let Result.failure(error) = $0 {
+                receivedError = error
+                exp.fulfill()
+            }
+        }
+        loader.complete(with: error)
+        wait(for: [exp], timeout: 1)
+        XCTAssertEqual(error, receivedError as NSError?, "Expected loader error to be same as failure error")
+    }
+    
     func test_numberOfLists_onSuccessfullyLoadedNews() {
         
         let (sut, loader) = makeSut()
@@ -67,5 +95,9 @@ class NewsLoaderSpy: NewsLoader {
     
     func complete(with news: [News]) {
         completion?(.success(news))
+    }
+    
+    func complete(with error: Error) {
+        completion?(.failure(error))
     }
 }

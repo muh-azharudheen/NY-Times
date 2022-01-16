@@ -21,7 +21,9 @@ class NewsListViewModel: NewsListViewModelProtocol {
             switch result {
             case .success(let news):
                 self?.news = news
-            case .failure: ()
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
