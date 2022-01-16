@@ -48,7 +48,7 @@ class NewsListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsListCell") as! NewsListCell
+        let cell: NewsListCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         cell.item = viewModel.newsList(for: indexPath.row)
         return cell
     }
@@ -61,7 +61,7 @@ class NewsListViewController: UITableViewController {
 private extension NewsListViewController {
     
     func setupTableView() {
-        tableView.register(UINib(nibName: "NewsListCell", bundle: .main), forCellReuseIdentifier: "NewsListCell")
+        tableView.registerNib(NewsListCell.self)
     }
     
     func loadList() {
