@@ -10,13 +10,20 @@ import Foundation
 class NewsListViewModel: NewsListViewModelProtocol {
     
     private let loader: NewsLoader
+    private var news: [News] = []
     
     init(loader: NewsLoader) {
         self.loader = loader
     }
     
     func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
-        loader.fetchNews { _ in }
+        loader.fetchNews { [weak self] result in
+            switch result {
+            case .success(let news):
+                self?.news = news
+            case .failure: ()
+            }
+        }
     }
     
     func newsList(for index: Int) -> NewsList {
@@ -24,6 +31,6 @@ class NewsListViewModel: NewsListViewModelProtocol {
     }
     
     func numberOfLists() -> Int {
-        return 0
+        return news.count
     }
 }

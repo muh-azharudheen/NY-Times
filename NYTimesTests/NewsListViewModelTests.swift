@@ -28,6 +28,23 @@ class NewsListViewModelTests: XCTestCase {
         
         loader.complete(with: [])
         XCTAssertEqual(sut.numberOfLists(), 0, "Expected 0 items, when loader completes with empty lists")
+        
+        let singleNews = [makeNews(for: 0)]
+        loader.complete(with: singleNews)
+        XCTAssertEqual(sut.numberOfLists(), 1, "Expected 1 Item once loader complets with single news")
+        
+        let manyNews = [
+            makeNews(for: 0),
+            makeNews(for: 1),
+            makeNews(for: 2)
+        ]
+        
+        loader.complete(with: manyNews)
+        XCTAssertEqual(sut.numberOfLists(), manyNews.count, "Expected number of lists same as news count")
+    }
+    
+    private  func makeNews(for index: Int) -> News {
+        return News(id: index, title: "title \(index)", abstract: "abstract \(index)", publishedDate: Date(), url: URL(string: "www.google.com")!, imageURL: nil)
     }
     
     func makeSut() -> (NewsListViewModel, NewsLoaderSpy) {
