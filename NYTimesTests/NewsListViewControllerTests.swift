@@ -112,6 +112,20 @@ class NewsListViewControllerTests: XCTestCase {
         test(cell: sut.cell(for: 2) as? NewsListCell, with: list2)
     }
     
+    func test_selecting_list_willNavigateToDetailViewController() {
+        let (sut, loader) = makeSUT()
+        let navigationController = UINavigationController(rootViewController: sut)
+        setAsRoot(controller: navigationController)
+        
+        let list0 = NewsList(title: "title1", author: "Author1", imageURL: nil, dateString: "01-01-2022")
+        loader.completeListLoading(with: [list0])
+        
+        sut.simulateTapOnList(at: 0)
+        waitForScreenChangeAnimation()
+        
+        XCTAssertNotNil(navigationController.children.last as? DetailViewController)
+    }
+    
     func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
         let viewModel = NewsListViewModelSpy()
         let sut = NewsListViewController(viewModel: viewModel)
@@ -127,30 +141,6 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.labelAuthor?.text, list.author, file: file, line: line)
         XCTAssertEqual(cell.labelDate?.text, list.dateString, file: file, line: line)
     }
-    /*
-    
-    
-    func test_selecting_list_willNavigateToDetailViewController() {
-        let (sut, loader) = makeSUT()
-        let navigationController = UINavigationController(rootViewController: sut)
-        setAsRoot(controller: navigationController)
-        
-        let list0 = NewsList(title: "title1", author: "Author1", imageURL: nil, dateString: "01-01-2022")
-        loader.completeListLoading(with: [list0])
-        
-        sut.simulateTapOnList(at: 0)
-        waitForScreenChangeAnimation()
-        
-        XCTAssertNotNil(navigationController.children.last as? DetailViewController)
-    }
-    
-   
-    
-    private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListViewModelSpy) {
-        let loader = NewsListViewModelSpy()
-        let sut = NewsListViewController(viewModel: loader)
-        return (sut, loader)
-    } */
     
     private func setAsRoot(controller: UIViewController) {
         let window = UIWindow(frame: UIScreen.main.bounds)
