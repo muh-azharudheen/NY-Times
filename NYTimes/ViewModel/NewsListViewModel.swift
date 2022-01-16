@@ -7,6 +7,17 @@
 
 import Foundation
 
-class NewsListViewModel {
+class NewsListViewModel: NewsListViewModelProtocol {
     
+    func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
+        
+    }
+    
+    func newsList(for index: Int) -> NewsList {
+        return NewsList(title: "", author: "", imageURL: nil, dateString: "")
+    }
+    
+    func numberOfLists() -> Int {
+        return 0
+    }
 }
