@@ -7,21 +7,12 @@
 
 import Foundation
 
-class News {
+struct News {
     
-    let id: String
+    let id: Int
     let title: String
     let abstract: String
     let publishedDate: Date
     let url: URL
-    let imageURL: URL
-    
-    init(id: String, title: String, abstract: String, publishedDate: Date, url: URL, imageURL: URL) {
-        self.id = id
-        self.title = title
-        self.abstract = abstract
-        self.publishedDate = publishedDate
-        self.url = url
-        self.imageURL = imageURL
-    }
+    let imageURL: URL?
 }

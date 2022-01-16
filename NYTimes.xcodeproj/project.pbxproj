@@ -18,6 +18,7 @@
 		2EB7FA6027943671005A1DC2 /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA5F27943671005A1DC2 /* NewsLoader.swift */; };
 		2EB7FA6227943681005A1DC2 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA6127943681005A1DC2 /* News.swift */; };
 		2EB7FA7F2794954A005A1DC2 /* NewsListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA412792A3B7005A1DC2 /* NewsListViewControllerTests.swift */; };
+		2EB7FA812794974E005A1DC2 /* NewsApiLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA802794974E005A1DC2 /* NewsApiLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		2EB7FA5F27943671005A1DC2 /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
 		2EB7FA6127943681005A1DC2 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2EB7FA7627949546005A1DC2 /* NYTimesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYTimesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EB7FA802794974E005A1DC2 /* NewsApiLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB7FA5F27943671005A1DC2 /* NewsLoader.swift */,
+				2EB7FA802794974E005A1DC2 /* NewsApiLoader.swift */,
 				2EB7FA6127943681005A1DC2 /* News.swift */,
 			);
 			path = Loader;
@@ -246,6 +249,7 @@
 				2EB7FA5D27942D14005A1DC2 /* URLSessionHTTPClient.swift in Sources */,
 				2EB7FA0727920AE8005A1DC2 /* AppDelegate.swift in Sources */,
 				2EB7FA6027943671005A1DC2 /* NewsLoader.swift in Sources */,
+				2EB7FA812794974E005A1DC2 /* NewsApiLoader.swift in Sources */,
 				2EB7FA6227943681005A1DC2 /* News.swift in Sources */,
 				2EB7FA502792CC15005A1DC2 /* NewsListCell.swift in Sources */,
 				2EB7FA0927920AE8005A1DC2 /* SceneDelegate.swift in Sources */,

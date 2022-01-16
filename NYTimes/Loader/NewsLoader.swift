@@ -8,6 +8,6 @@
 import Foundation
 
 protocol NewsLoader {
-    typealias Result = Swift.Result<News, Error>
-    func fetchNews(from url: URL, completion: @escaping (Result) -> Void)
+    typealias Result = Swift.Result<[News], Error>
+    func fetchNews(completion: @escaping (Result) -> Void)
 }
