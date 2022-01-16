@@ -23,24 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        NewsListViewController(viewModel: NewsListUILoader())
-    }
-}
-
-
-
-class NewsListUILoader: NewsListViewModelProtocol {
-    
-    func numberOfLists() -> Int {
-        return 0
-    }
-    
-    func newsList(for index: Int) -> NewsList {
-        NewsList(title: "", author: "", imageURL: nil, dateString: "")
-    }
-    
-    
-    func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
-        
+        UIViewController()
     }
 }
