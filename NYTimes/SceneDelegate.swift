@@ -31,6 +31,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 class NewsListUILoader: NewsListViewModelProtocol {
     
+    func numberOfLists() -> Int {
+        return 0
+    }
+    
+    
     func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
         
     }

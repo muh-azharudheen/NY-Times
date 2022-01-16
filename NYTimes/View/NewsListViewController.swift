@@ -10,6 +10,7 @@ import UIKit
 protocol NewsListViewModelProtocol {
     typealias Result = Swift.Result<[NewsList], Error>
     func loadList(completion: @escaping (Result) -> Void)
+    func numberOfLists() -> Int
 }
 
 struct NewsList {
@@ -22,7 +23,7 @@ struct NewsList {
 class NewsListViewController: UITableViewController {
     
     private var viewModel: NewsListViewModelProtocol
-    private var datasource: [NewsList] = []
+//    private var datasource: [NewsList] = []
     private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: view.frame)
     
     init(viewModel: NewsListViewModelProtocol) {
@@ -43,12 +44,11 @@ class NewsListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return viewModel.numberOfLists()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsListCell") as! NewsListCell
-        cell.item = datasource[indexPath.row]
         return cell
     }
     
@@ -76,7 +76,6 @@ private extension NewsListViewController {
     }
     
     private func didFetchLists(with lists: [NewsList]) {
-        datasource = lists
         tableView.reloadData()
     }
     
