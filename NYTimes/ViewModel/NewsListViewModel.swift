@@ -16,7 +16,7 @@ class NewsListViewModel: NewsListViewModelProtocol {
     }
     
     func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
-        
+        loader.fetchNews { _ in }
     }
     
     func newsList(for index: Int) -> NewsList {
