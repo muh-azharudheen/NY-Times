@@ -12,6 +12,7 @@ struct News {
     let id: Int
     let title: String
     let abstract: String
+    let author: String
     let publishedDate: Date
     let url: URL
     let imageURL: URL?

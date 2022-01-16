@@ -71,6 +71,26 @@ class NewsListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.numberOfLists(), manyNews.count, "Expected number of lists same as news count")
     }
     
+    func test_newsListOnSuccessfullyLoadedNews() {
+        
+        let (sut, loader) = makeSut()
+        sut.loadList { _ in }
+        
+        let news0 = makeNews(for: 0)
+        let news1 = makeNews(for: 0)
+        let news2 = makeNews(for: 0)
+        
+        let singleNews = [news0]
+        loader.complete(with: singleNews)
+        test(news0, againist: sut.newsList(for: 0))
+        
+        let manyNews = [news0, news1, news2]
+        loader.complete(with: manyNews)
+        manyNews.enumerated().forEach {
+            test($0.element, againist: sut.newsList(for: $0.offset))
+        }
+    }
+    
     // MARK: Helpers
     func makeSut() -> (NewsListViewModel, NewsLoaderSpy) {
         let loader = NewsLoaderSpy()
@@ -79,7 +99,15 @@ class NewsListViewModelTests: XCTestCase {
     }
     
     private  func makeNews(for index: Int) -> News {
-        News(id: index, title: "title \(index)", abstract: "abstract \(index)", publishedDate: Date(), url: URL(string: "www.google.com")!, imageURL: nil)
+        News(id: index, title: "title \(index)", abstract: "abstract \(index)", author: "author \(index)", publishedDate: Date(), url: URL(string: "www.google.com")!, imageURL: nil)
+    }
+    
+    private func test(_ news: News, againist list: NewsList, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(news.title, list.title, "Expecte list title is same as news title", file: file, line: line)
+        XCTAssertEqual(news.author, list.author, "Expecte list abstract is same as news abstract", file: file, line: line)
+        XCTAssertEqual(news.imageURL, list.imageURL, "Expect list abstract is same as news abstract", file: file, line: line)
+        // TODO: Update checking of date
+//        XCTAssertEqual(news0.publishedDate, list.dateString, "Expecte list abstract is same as news abstract")
     }
 }
 

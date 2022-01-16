@@ -29,10 +29,17 @@ class NewsListViewModel: NewsListViewModelProtocol {
     }
     
     func newsList(for index: Int) -> NewsList {
-        return NewsList(title: "", author: "", imageURL: nil, dateString: "")
+        news[index].newsList()
     }
     
     func numberOfLists() -> Int {
         return news.count
+    }
+}
+
+
+private extension News {
+    func newsList() -> NewsList {
+        NewsList(title: title, author: author, imageURL: imageURL, dateString: "")
     }
 }

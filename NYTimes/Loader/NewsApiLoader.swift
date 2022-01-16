@@ -43,6 +43,7 @@ private extension NewsApiLoader {
             let title: String
             let abstract: String
             let published_date: String
+            let byline: String
         }
         
         let status: String
@@ -53,7 +54,7 @@ private extension NewsApiLoader {
 private extension NewsApiLoader.NewsResponse.NewsResult {
     
     func news() -> News {
-        News(id: id, title: title, abstract: abstract, publishedDate: Date(), url: url, imageURL: nil)
+        News(id: id, title: title, abstract: abstract, author: byline, publishedDate: Date(), url: url, imageURL: nil)
     }
 }
 
