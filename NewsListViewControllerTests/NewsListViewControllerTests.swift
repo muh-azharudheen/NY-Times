@@ -96,6 +96,20 @@ class NewsListViewControllerTests: XCTestCase {
         test(cell: sut.cell(for: 2) as? NewsListCell, with: list2)
     }
     
+    func test_selecting_list_willNavigateToDetailViewController() {
+        let (sut, loader) = makeSUT()
+        let navigationController = UINavigationController(rootViewController: sut)
+        setAsRoot(controller: navigationController)
+        
+        let list0 = NewsList(title: "title1", author: "Author1", imageURL: nil, dateString: "01-01-2022")
+        loader.completeListLoading(with: [list0])
+        
+        sut.simulateTapOnList(at: 0)
+        waitForScreenChangeAnimation()
+        
+        XCTAssertNotNil(navigationController.children.last as? DetailViewController)
+    }
+    
     private func test(cell: NewsListCell?, with list: NewsList, file: StaticString = #filePath, line: UInt = #line) {
         guard let cell = cell else {
             XCTFail("Expected cell with type NewsListCell", file: file, line: line)
@@ -119,6 +133,11 @@ class NewsListViewControllerTests: XCTestCase {
     }
     
     private func presentedViewController(on sut: UIViewController) -> UIViewController? {
+        waitForScreenChangeAnimation()
+        return sut.presentedViewController
+    }
+    
+    private func waitForScreenChangeAnimation() {
         let expectation = expectation(description: "Waiting for presenting animation to complete")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -126,7 +145,6 @@ class NewsListViewControllerTests: XCTestCase {
         }
         
         wait(for: [expectation], timeout: 2)
-        return sut.presentedViewController
     }
 }
 
@@ -149,11 +167,18 @@ private extension NewsListViewController {
     private var listSection: Int {
         return 0
     }
+    
+    func simulateTapOnList(at row: Int) {
+        let delegate = tableView.delegate
+        let index = IndexPath(row: row, section: listSection)
+        delegate?.tableView?(tableView, didSelectRowAt: index)
+    }
 }
 
 class NewsListLoaderSpy: NewsListLoader {
         
     private var completion: ((NewsListLoader.Result) -> Void)?
+    var selectedIndex: Int?
 
     func loadList(completion: @escaping (NewsListLoader.Result) -> Void) {
         self.completion = completion

@@ -51,6 +51,10 @@ class NewsListViewController: UITableViewController {
         cell.item = datasource[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
 }
 
 private extension NewsListViewController {
@@ -81,3 +85,5 @@ private extension NewsListViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+class DetailViewController: UIViewController { }
