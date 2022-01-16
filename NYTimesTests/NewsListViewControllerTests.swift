@@ -126,7 +126,7 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertNotNil(navigationController.children.last as? DetailViewController)
     }
     
-    func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
+    private func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
         let viewModel = NewsListViewModelSpy()
         let sut = NewsListViewController(viewModel: viewModel)
         return (sut, viewModel)
@@ -191,34 +191,37 @@ private extension NewsListViewController {
     }
 }
 
-class NewsListViewModelSpy: NewsListViewModelProtocol {
+private extension NewsListViewControllerTests {
+    
+    class NewsListViewModelSpy: NewsListViewModelProtocol {
 
-    var lists = [NewsList]()
-    
-    var loadNewsCount = 0
-    
-    func numberOfLists() -> Int {
-        lists.count
-    }
+        var lists = [NewsList]()
         
-    private var completion: ((NewsListViewModelProtocol.Result) -> Void)?
-    var selectedIndex: Int?
+        var loadNewsCount = 0
+        
+        func numberOfLists() -> Int {
+            lists.count
+        }
+            
+        private var completion: ((NewsListViewModelProtocol.Result) -> Void)?
+        var selectedIndex: Int?
 
-    func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
-        loadNewsCount += 1
-        self.completion = completion
-    }
-    
-    func newsList(for index: Int) -> NewsList {
-        lists[index]
-    }
-    
-    func completeListLoading(with list: [NewsList]) {
-        lists = list
-        completion?(.success(()))
-    }
-    
-    func completeListLoading(with error: Error) {
-        completion?(.failure(error))
+        func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
+            loadNewsCount += 1
+            self.completion = completion
+        }
+        
+        func newsList(for index: Int) -> NewsList {
+            lists[index]
+        }
+        
+        func completeListLoading(with list: [NewsList]) {
+            lists = list
+            completion?(.success(()))
+        }
+        
+        func completeListLoading(with error: Error) {
+            completion?(.failure(error))
+        }
     }
 }
