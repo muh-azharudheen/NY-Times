@@ -21,13 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2EB7FA432792A3B7005A1DC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2EB7F9FB27920AE8005A1DC2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2EB7FA0227920AE8005A1DC2;
-			remoteInfo = NYTimes;
-		};
 		2EB7FA7A27949546005A1DC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2EB7F9FB27920AE8005A1DC2 /* Project object */;
@@ -45,7 +38,6 @@
 		2EB7FA1227920AE9005A1DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EB7FA1427920AE9005A1DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EB7FA1C27920F78005A1DC2 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
-		2EB7FA3F2792A3B7005A1DC2 /* NewsListViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsListViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB7FA412792A3B7005A1DC2 /* NewsListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewControllerTests.swift; sourceTree = "<group>"; };
 		2EB7FA4E2792CC15005A1DC2 /* NewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
 		2EB7FA4F2792CC15005A1DC2 /* NewsListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsListCell.xib; sourceTree = "<group>"; };
@@ -57,13 +49,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		2EB7FA0027920AE8005A1DC2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2EB7FA3C2792A3B7005A1DC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				2EB7FA0327920AE8005A1DC2 /* NYTimes.app */,
-				2EB7FA3F2792A3B7005A1DC2 /* NewsListViewControllerTests.xctest */,
 				2EB7FA7627949546005A1DC2 /* NYTimesTests.xctest */,
 			);
 			name = Products;
@@ -177,24 +161,6 @@
 			productReference = 2EB7FA0327920AE8005A1DC2 /* NYTimes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2EB7FA3E2792A3B7005A1DC2 /* NewsListViewControllerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2EB7FA472792A3B7005A1DC2 /* Build configuration list for PBXNativeTarget "NewsListViewControllerTests" */;
-			buildPhases = (
-				2EB7FA3B2792A3B7005A1DC2 /* Sources */,
-				2EB7FA3C2792A3B7005A1DC2 /* Frameworks */,
-				2EB7FA3D2792A3B7005A1DC2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2EB7FA442792A3B7005A1DC2 /* PBXTargetDependency */,
-			);
-			name = NewsListViewControllerTests;
-			productName = NewsListViewControllerTests;
-			productReference = 2EB7FA3F2792A3B7005A1DC2 /* NewsListViewControllerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		2EB7FA7527949546005A1DC2 /* NYTimesTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2EB7FA7E27949546005A1DC2 /* Build configuration list for PBXNativeTarget "NYTimesTests" */;
@@ -226,10 +192,6 @@
 					2EB7FA0227920AE8005A1DC2 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					2EB7FA3E2792A3B7005A1DC2 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 2EB7FA0227920AE8005A1DC2;
-					};
 					2EB7FA7527949546005A1DC2 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 2EB7FA0227920AE8005A1DC2;
@@ -250,7 +212,6 @@
 			projectRoot = "";
 			targets = (
 				2EB7FA0227920AE8005A1DC2 /* NYTimes */,
-				2EB7FA3E2792A3B7005A1DC2 /* NewsListViewControllerTests */,
 				2EB7FA7527949546005A1DC2 /* NYTimesTests */,
 			);
 		};
@@ -264,13 +225,6 @@
 				2EB7FA512792CC15005A1DC2 /* NewsListCell.xib in Resources */,
 				2EB7FA1327920AE9005A1DC2 /* LaunchScreen.storyboard in Resources */,
 				2EB7FA1027920AE9005A1DC2 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2EB7FA3D2792A3B7005A1DC2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,13 +252,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2EB7FA3B2792A3B7005A1DC2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2EB7FA7227949546005A1DC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,11 +263,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2EB7FA442792A3B7005A1DC2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2EB7FA0227920AE8005A1DC2 /* NYTimes */;
-			targetProxy = 2EB7FA432792A3B7005A1DC2 /* PBXContainerItemProxy */;
-		};
 		2EB7FA7B27949546005A1DC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2EB7FA0227920AE8005A1DC2 /* NYTimes */;
@@ -508,40 +450,6 @@
 			};
 			name = Release;
 		};
-		2EB7FA452792A3B7005A1DC2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.company.NewsListViewControllerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTimes.app/NYTimes";
-			};
-			name = Debug;
-		};
-		2EB7FA462792A3B7005A1DC2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.company.NewsListViewControllerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTimes.app/NYTimes";
-			};
-			name = Release;
-		};
 		2EB7FA7C27949546005A1DC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -593,15 +501,6 @@
 			buildConfigurations = (
 				2EB7FA1827920AE9005A1DC2 /* Debug */,
 				2EB7FA1927920AE9005A1DC2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2EB7FA472792A3B7005A1DC2 /* Build configuration list for PBXNativeTarget "NewsListViewControllerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2EB7FA452792A3B7005A1DC2 /* Debug */,
-				2EB7FA462792A3B7005A1DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
