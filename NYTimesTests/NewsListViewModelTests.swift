@@ -43,14 +43,15 @@ class NewsListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.numberOfLists(), manyNews.count, "Expected number of lists same as news count")
     }
     
-    private  func makeNews(for index: Int) -> News {
-        return News(id: index, title: "title \(index)", abstract: "abstract \(index)", publishedDate: Date(), url: URL(string: "www.google.com")!, imageURL: nil)
-    }
-    
+    // MARK: Helpers
     func makeSut() -> (NewsListViewModel, NewsLoaderSpy) {
         let loader = NewsLoaderSpy()
         let sut = NewsListViewModel(loader: loader)
         return (sut, loader)
+    }
+    
+    private  func makeNews(for index: Int) -> News {
+        News(id: index, title: "title \(index)", abstract: "abstract \(index)", publishedDate: Date(), url: URL(string: "www.google.com")!, imageURL: nil)
     }
 }
 
