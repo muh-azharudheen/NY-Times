@@ -10,6 +10,7 @@ import UIKit
 protocol NewsListViewModelProtocol {
     typealias Result = Swift.Result<Void, Error>
     func loadList(completion: @escaping (Result) -> Void)
+    func newsList(for index: Int) -> NewsList
     func numberOfLists() -> Int
 }
 
@@ -48,6 +49,7 @@ class NewsListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsListCell") as! NewsListCell
+        cell.item = viewModel.newsList(for: indexPath.row)
         return cell
     }
     

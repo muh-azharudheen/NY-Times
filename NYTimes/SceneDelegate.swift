@@ -35,6 +35,10 @@ class NewsListUILoader: NewsListViewModelProtocol {
         return 0
     }
     
+    func newsList(for index: Int) -> NewsList {
+        NewsList(title: "", author: "", imageURL: nil, dateString: "")
+    }
+    
     
     func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
         
