@@ -23,13 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        NewsListViewController(loader: NewsListApiLoader())
+        NewsListViewController(loader: NewsListUILoader())
     }
 }
 
-class NewsListApiLoader: NewsListLoader {
+
+
+class NewsListUILoader: NewsListLoader {
     
     func loadList(completion: @escaping (NewsListLoader.Result) -> Void) {
-        completion(.success([ NewsList(title: "Title", author: "Author", imageURL: nil, dateString: "01-01-2021") ]))
+        
     }
 }
