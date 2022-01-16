@@ -76,10 +76,6 @@ private extension NewsListViewController {
         }
     }
     
-    private func didFetchLists(with lists: [NewsList]) {
-        tableView.reloadData()
-    }
-    
     private func didThrowError() {
         let alert = UIAlertController(title: "Error", message: "An Unknown Error Occured", preferredStyle: .alert)
         present(alert, animated: true, completion: nil)
