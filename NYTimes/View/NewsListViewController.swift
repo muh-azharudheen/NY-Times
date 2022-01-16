@@ -21,12 +21,12 @@ struct NewsList {
 
 class NewsListViewController: UITableViewController {
     
-    private var loader: NewsListViewModelProtocol
+    private var viewModel: NewsListViewModelProtocol
     private var datasource: [NewsList] = []
     private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: view.frame)
     
-    init(loader: NewsListViewModelProtocol) {
-        self.loader = loader
+    init(viewModel: NewsListViewModelProtocol) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -64,7 +64,7 @@ private extension NewsListViewController {
     }
     
     func loadList() {
-        loader.loadList { [weak self] result in
+        viewModel.loadList { [weak self] result in
             self?.activityIndicatorView.stopAnimating()
             switch result {
             case .success(let lists):

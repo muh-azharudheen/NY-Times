@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        NewsListViewController(loader: NewsListUILoader())
+        NewsListViewController(viewModel: NewsListUILoader())
     }
 }
 

@@ -120,9 +120,9 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.labelDate?.text, list.dateString, file: file, line: line)
     }
     
-    private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListLoaderSpy) {
-        let loader = NewsListLoaderSpy()
-        let sut = NewsListViewController(loader: loader)
+    private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListViewModelSpy) {
+        let loader = NewsListViewModelSpy()
+        let sut = NewsListViewController(viewModel: loader)
         return (sut, loader)
     }
     
@@ -175,7 +175,7 @@ private extension NewsListViewController {
     }
 }
 
-class NewsListLoaderSpy: NewsListViewModelProtocol {
+class NewsListViewModelSpy: NewsListViewModelProtocol {
         
     private var completion: ((NewsListViewModelProtocol.Result) -> Void)?
     var selectedIndex: Int?
