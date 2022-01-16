@@ -9,5 +9,5 @@ import XCTest
 @testable import NYTimes
 
 class NewsListViewModelTests: XCTestCase {
-    
+        
 }

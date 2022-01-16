@@ -9,6 +9,12 @@ import Foundation
 
 class NewsListViewModel: NewsListViewModelProtocol {
     
+    private let loader: NewsLoader
+    
+    init(loader: NewsLoader) {
+        self.loader = loader
+    }
+    
     func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
         
     }
