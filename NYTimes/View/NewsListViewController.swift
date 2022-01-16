@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewsListViewModelProtocol {
-    typealias Result = Swift.Result<[NewsList], Error>
+    typealias Result = Swift.Result<Void, Error>
     func loadList(completion: @escaping (Result) -> Void)
     func numberOfLists() -> Int
 }
@@ -66,8 +66,8 @@ private extension NewsListViewController {
         viewModel.loadList { [weak self] result in
             self?.activityIndicatorView.stopAnimating()
             switch result {
-            case .success(let lists):
-                self?.didFetchLists(with: lists)
+            case .success:
+                self?.tableView.reloadData()
             case .failure:
                 self?.didThrowError()
             }

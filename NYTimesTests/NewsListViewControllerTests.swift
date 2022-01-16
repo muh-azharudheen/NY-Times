@@ -27,6 +27,30 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.isAnimating(), "Expected to show loader once view is loaded")
     }
     
+    func test_loader_behaviouronSuccesfullyDeliverOfLists() {
+        
+        let testList = [NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021")]
+        
+        let (sut, viewModel) = makeSUT()
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isAnimating(), "Expected to show loader once view is loaded")
+        
+        viewModel.completeListLoading(with: testList)
+        
+        XCTAssertFalse(sut.isAnimating(), "Expected to stop animating once loading lists delivers items")
+    }
+    
+    func test_loader_behaviouronFailureOfLoadingLists() {
+        
+        let (sut, viewModel) = makeSUT()
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isAnimating(), "Expected to show loader once view is loaded")
+        
+        viewModel.completeListLoading(with: NSError(domain: "anyError", code: 0, userInfo: nil))
+        
+        XCTAssertFalse(sut.isAnimating(), "Expected to stop animating once loading lists fails")
+    }
+    
     func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
         let viewModel = NewsListViewModelSpy()
         let sut = NewsListViewController(viewModel: viewModel)
@@ -201,10 +225,12 @@ private extension NewsListViewController {
 
 class NewsListViewModelSpy: NewsListViewModelProtocol {
     
+    var lists = [NewsList]()
+    
     var loadNewsCount = 0
     
     func numberOfLists() -> Int {
-        return 1
+        lists.count
     }
         
     private var completion: ((NewsListViewModelProtocol.Result) -> Void)?
@@ -212,10 +238,12 @@ class NewsListViewModelSpy: NewsListViewModelProtocol {
 
     func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
         loadNewsCount += 1
+        self.completion = completion
     }
     
     func completeListLoading(with list: [NewsList]) {
-        completion?(.success(list))
+        lists = list
+        completion?(.success(()))
     }
     
     func completeListLoading(with error: Error) {
