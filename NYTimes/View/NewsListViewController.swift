@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NewsListLoader {
+protocol NewsListViewModelProtocol {
     typealias Result = Swift.Result<[NewsList], Error>
     func loadList(completion: @escaping (Result) -> Void)
 }
@@ -21,11 +21,11 @@ struct NewsList {
 
 class NewsListViewController: UITableViewController {
     
-    private var loader: NewsListLoader
+    private var loader: NewsListViewModelProtocol
     private var datasource: [NewsList] = []
     private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: view.frame)
     
-    init(loader: NewsListLoader) {
+    init(loader: NewsListViewModelProtocol) {
         self.loader = loader
         super.init(nibName: nil, bundle: nil)
     }

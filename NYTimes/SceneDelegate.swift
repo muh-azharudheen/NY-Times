@@ -29,9 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 
-class NewsListUILoader: NewsListLoader {
+class NewsListUILoader: NewsListViewModelProtocol {
     
-    func loadList(completion: @escaping (NewsListLoader.Result) -> Void) {
+    func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
         
     }
 }

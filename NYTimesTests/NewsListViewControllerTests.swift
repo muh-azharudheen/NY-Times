@@ -175,12 +175,12 @@ private extension NewsListViewController {
     }
 }
 
-class NewsListLoaderSpy: NewsListLoader {
+class NewsListLoaderSpy: NewsListViewModelProtocol {
         
-    private var completion: ((NewsListLoader.Result) -> Void)?
+    private var completion: ((NewsListViewModelProtocol.Result) -> Void)?
     var selectedIndex: Int?
 
-    func loadList(completion: @escaping (NewsListLoader.Result) -> Void) {
+    func loadList(completion: @escaping (NewsListViewModelProtocol.Result) -> Void) {
         self.completion = completion
     }
     
