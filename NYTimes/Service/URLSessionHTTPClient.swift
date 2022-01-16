@@ -37,3 +37,23 @@ class URLSessionHTTPClient: HTTPClient {
         task.resume()
     }
 }
+
+extension URLSessionHTTPClient {
+    
+    func get<T: Decodable>(from url: URL, completion: @escaping (Swift.Result<T, Error>) -> Void) {
+        
+        get(from: url) { (result: Swift.Result<(Data, HTTPURLResponse), Error>) in
+            switch result {
+            case .success(let result):
+                do {
+                    let result = try JSONDecoder().decode(T.self, from: result.0)
+                    completion(.success(result))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
