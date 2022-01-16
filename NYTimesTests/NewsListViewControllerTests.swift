@@ -51,15 +51,8 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.isAnimating(), "Expected to stop animating once loading lists fails")
     }
     
-    func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
-        let viewModel = NewsListViewModelSpy()
-        let sut = NewsListViewController(viewModel: viewModel)
-        return (sut, viewModel)
-    }
-    
     func test_loadListCompletion_rendersSuccesfullyLoadedList() {
         
-        /*
         let list0: [NewsList] = []
         
         let list1 = [NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021")]
@@ -83,36 +76,11 @@ class NewsListViewControllerTests: XCTestCase {
         
         // complete lists successfully
         loader.completeListLoading(with: list2)
-        XCTAssertEqual(sut.numberOfRenderedLists(), list2.count, "Expected list counts when loader completes with many lists") */
+        XCTAssertEqual(sut.numberOfRenderedLists(), list2.count, "Expected list counts when loader completes with many lists")
     }
     
-    func test_activityIndicator_onSuccessFullDeliveryOfItems() {
-        /*
-        let list = [NewsList(title: "title", author: "Author", imageURL: nil, dateString: "01-01-2021")]
-
+    func test_loadLists_showsAlertWhileCompletesWithaFailure() {
         let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(sut.isAnimating(),"Expected to animate activity indicator view once view is loaded")
-        
-        loader.completeListLoading(with: list)
-        
-        XCTAssertFalse(sut.isAnimating(), "Expected to stop animation of activity indicator once loader completes with lists") */
-    }
-    
-    func test_activityIndicator_onFailure() {
-       /* let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(sut.isAnimating(),"Expected to animate activity indicator view once view is loaded")
-        
-        loader.completeListLoading(with: NSError(domain: "Any error", code: 0, userInfo: nil))
-        
-        XCTAssertFalse(sut.isAnimating(), "Expected to stop animation of activity indicator when loader fails on delivering lists") */
-    }
-    
-    func test_loadLists_showsAlertWhileCompletesWithaFailure() {}
-    /*    let (sut, loader) = makeSUT()
         setAsRoot(controller: sut)
         
         sut.loadViewIfNeeded()
@@ -128,21 +96,40 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertEqual(alert.actions, [])
     }
     
-    func test_cell_onSuccessfullLoadingOfNews() {
-        
-        let list0 = NewsList(title: "title1", author: "Author1", imageURL: nil, dateString: "01-01-2022")
-        let list1 = NewsList(title: "title2", author: "Author2", imageURL: nil, dateString: "01-01-2022")
-        let list2 = NewsList(title: "title3", author: "Author3", imageURL: nil, dateString: "01-01-2022")
-        
-        let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        loader.completeListLoading(with: [list0, list1, list2])
-        
-        test(cell: sut.cell(for: 0) as? NewsListCell, with: list0)
-        test(cell: sut.cell(for: 1) as? NewsListCell, with: list1)
-        test(cell: sut.cell(for: 2) as? NewsListCell, with: list2)
+//    func test_cell_onSuccessfullLoadingOfNews() {
+//
+//        let list0 = NewsList(title: "title1", author: "Author1", imageURL: nil, dateString: "01-01-2022")
+//        let list1 = NewsList(title: "title2", author: "Author2", imageURL: nil, dateString: "01-01-2022")
+//        let list2 = NewsList(title: "title3", author: "Author3", imageURL: nil, dateString: "01-01-2022")
+//
+//        let (sut, loader) = makeSUT()
+//        sut.loadViewIfNeeded()
+//
+//        loader.completeListLoading(with: [list0, list1, list2])
+//
+//        test(cell: sut.cell(for: 0) as? NewsListCell, with: list0)
+//        test(cell: sut.cell(for: 1) as? NewsListCell, with: list1)
+//        test(cell: sut.cell(for: 2) as? NewsListCell, with: list2)
+//    }
+    
+    func makeSUT() -> (sut: NewsListViewController, viewModel: NewsListViewModelSpy) {
+        let viewModel = NewsListViewModelSpy()
+        let sut = NewsListViewController(viewModel: viewModel)
+        return (sut, viewModel)
     }
+    
+//    private func test(cell: NewsListCell?, with list: NewsList, file: StaticString = #filePath, line: UInt = #line) {
+//        guard let cell = cell else {
+//            XCTFail("Expected cell with type NewsListCell", file: file, line: line)
+//            return
+//        }
+//        XCTAssertEqual(cell.labelTitle?.text, list.title, file: file, line: line)
+//        XCTAssertEqual(cell.labelAuthor?.text, list.author, file: file, line: line)
+//        XCTAssertEqual(cell.labelDate?.text, list.dateString, file: file, line: line)
+//    }
+    
+    /*
+    
     
     func test_selecting_list_willNavigateToDetailViewController() {
         let (sut, loader) = makeSUT()
@@ -158,15 +145,7 @@ class NewsListViewControllerTests: XCTestCase {
         XCTAssertNotNil(navigationController.children.last as? DetailViewController)
     }
     
-    private func test(cell: NewsListCell?, with list: NewsList, file: StaticString = #filePath, line: UInt = #line) {
-        guard let cell = cell else {
-            XCTFail("Expected cell with type NewsListCell", file: file, line: line)
-            return
-        }
-        XCTAssertEqual(cell.labelTitle?.text, list.title, file: file, line: line)
-        XCTAssertEqual(cell.labelAuthor?.text, list.author, file: file, line: line)
-        XCTAssertEqual(cell.labelDate?.text, list.dateString, file: file, line: line)
-    }
+   
     
     private func makeSUT() ->  (sut: NewsListViewController, loader: NewsListViewModelSpy) {
         let loader = NewsListViewModelSpy()
