@@ -10,6 +10,7 @@ import Foundation
 protocol HTTPClient {
     typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
     func get(from url: URL, completion: @escaping (Result) -> Void)
+    func get<T: Decodable>(from url: URL, completion: @escaping (Swift.Result<T, Error>) -> Void)
 }
 
 class URLSessionHTTPClient: HTTPClient {
@@ -36,9 +37,6 @@ class URLSessionHTTPClient: HTTPClient {
         }
         task.resume()
     }
-}
-
-extension URLSessionHTTPClient {
     
     func get<T: Decodable>(from url: URL, completion: @escaping (Swift.Result<T, Error>) -> Void) {
         
