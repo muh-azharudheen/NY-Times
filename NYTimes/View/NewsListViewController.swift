@@ -12,6 +12,7 @@ protocol NewsListViewModelProtocol {
     func loadList(completion: @escaping (Result) -> Void)
     func newsList(for index: Int) -> NewsList
     func numberOfLists() -> Int
+    func url(for index: Int) -> URL
 }
 
 struct NewsList {
@@ -54,7 +55,8 @@ class NewsListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        let detailViewController = DetailViewController(url: viewModel.url(for: indexPath.row))
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

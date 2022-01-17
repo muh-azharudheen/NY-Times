@@ -35,6 +35,10 @@ class NewsListViewModel: NewsListViewModelProtocol {
     func numberOfLists() -> Int {
         return news.count
     }
+    
+    func url(for index: Int) -> URL {
+        news[index].url
+    }
 }
 
 

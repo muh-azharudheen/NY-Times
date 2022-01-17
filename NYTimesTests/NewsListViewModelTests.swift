@@ -77,8 +77,8 @@ class NewsListViewModelTests: XCTestCase {
         sut.loadList { _ in }
         
         let news0 = makeNews(for: 0)
-        let news1 = makeNews(for: 0)
-        let news2 = makeNews(for: 0)
+        let news1 = makeNews(for: 1)
+        let news2 = makeNews(for: 2)
         
         let singleNews = [news0]
         loader.complete(with: singleNews)
@@ -91,6 +91,22 @@ class NewsListViewModelTests: XCTestCase {
         }
     }
     
+    func test_urlForIndex_forRespectiveList() {
+        
+        let (sut, loader) = makeSut()
+        sut.loadList { _ in }
+        
+        let news0 = makeNews(for: 0, url: URL(string: "https://any-url-0.com")!)
+        let news1 = makeNews(for: 1, url: URL(string: "https://any-url-1.com")!)
+        let news2 = makeNews(for: 2, url: URL(string: "https://any-url-2.com")!)
+        let manyNews = [news0, news1, news2]
+        loader.complete(with: manyNews)
+        
+        XCTAssertEqual(sut.url(for: 0).absoluteString, "https://any-url-0.com")
+        XCTAssertEqual(sut.url(for: 1).absoluteString, "https://any-url-1.com")
+        XCTAssertEqual(sut.url(for: 2).absoluteString, "https://any-url-2.com")
+    }
+    
     // MARK: Helpers
     func makeSut() -> (NewsListViewModel, NewsLoaderSpy) {
         let loader = NewsLoaderSpy()
@@ -98,8 +114,8 @@ class NewsListViewModelTests: XCTestCase {
         return (sut, loader)
     }
     
-    private  func makeNews(for index: Int) -> News {
-        News(id: index, title: "title \(index)", abstract: "abstract \(index)", author: "author \(index)", publishedDate: Date(), url: URL(string: "www.google.com")!, imageURL: nil)
+    private  func makeNews(for index: Int, url: URL = URL(string: "https://any-url.com")!) -> News {
+        News(id: index, title: "title \(index)", abstract: "abstract \(index)", author: "author \(index)", publishedDate: Date(), url: url, imageURL: nil)
     }
     
     private func test(_ news: News, againist list: NewsList, file: StaticString = #filePath, line: UInt = #line) {

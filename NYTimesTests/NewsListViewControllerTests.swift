@@ -223,5 +223,9 @@ private extension NewsListViewControllerTests {
         func completeListLoading(with error: Error) {
             completion?(.failure(error))
         }
+        
+        func url(for index: Int) -> URL {
+            return URL(string: "https://any-url.com")!
+        }
     }
 }
