@@ -122,8 +122,14 @@ class NewsListViewModelTests: XCTestCase {
         XCTAssertEqual(news.title, list.title, "Expecte list title is same as news title", file: file, line: line)
         XCTAssertEqual(news.author, list.author, "Expecte list abstract is same as news abstract", file: file, line: line)
         XCTAssertEqual(news.imageURL, list.imageURL, "Expect list abstract is same as news abstract", file: file, line: line)
-        // TODO: Update checking of date
-//        XCTAssertEqual(news0.publishedDate, list.dateString, "Expecte list abstract is same as news abstract")
+        XCTAssertEqual(displayStirng(from: news.publishedDate), list.dateString, "Expecte list abstract is same as news abstract")
+    }
+    
+    func displayStirng(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD-MMM"
+        formatter.locale = Locale.current
+        return formatter.string(from: date)
     }
 }
 

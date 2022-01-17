@@ -44,6 +44,15 @@ class NewsListViewModel: NewsListViewModelProtocol {
 
 private extension News {
     func newsList() -> NewsList {
-        NewsList(title: title, author: author, imageURL: imageURL, dateString: "")
+        NewsList(title: title, author: author, imageURL: imageURL, dateString: publishedDate.toDisplayString())
+    }
+}
+
+private extension Date {
+    func toDisplayString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD-MMM"
+        formatter.locale = Locale.current
+        return formatter.string(from: self)
     }
 }
