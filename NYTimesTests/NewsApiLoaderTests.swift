@@ -137,6 +137,7 @@ class NewsApiLoaderTests: XCTestCase {
         XCTAssertEqual(news.title, "title \(index)", "Expected Title to be same as from response")
         XCTAssertEqual(news.abstract, "abstract \(index)", "Expected Title to be same as from response")
         XCTAssertEqual(news.author, "author \(index)", "Expected Date to be empty")
+        XCTAssertEqual(news.imageURL?.absoluteString,  "https://any-url\(index).com", "Expected image url is first url from metadata")
     }
     
     private func emptyResponse() -> Data {
@@ -150,7 +151,18 @@ class NewsApiLoaderTests: XCTestCase {
             "title": "title \(id)",
             "abstract": "abstract \(id)",
             "published_date": " ",
-            "byline": "author \(id)"
+            "byline": "author \(id)",
+            "media": [metadata(with: id)]
+        ]
+    }
+    
+    func metadata(with index: Int) -> [String: Any] {
+        [
+            "media-metadata": [
+                [
+                    "url": "https://any-url\(index).com"
+                ]
+            ]
         ]
     }
     
