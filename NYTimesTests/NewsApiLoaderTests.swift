@@ -52,81 +52,67 @@ class NewsApiLoaderTests: XCTestCase {
     
     func test_fetchNewsDeliversFailure_whenClientCompletesWithEmptyString() {
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
-        var receivedError: Error?
-        sut.fetchNews {
-            if case let Result.failure(error) = $0 {
-                receivedError = error
-                exp.fulfill()
-            }
+        let result = result(sut: sut) { client.complete(with: "".data(using: .utf8)!) }
+        
+        switch result {
+        case .success:
+            XCTFail("Expected a failure but got \(result) instead")
+        case .failure(let error):
+            XCTAssertNotNil(error, "Expected failure on empty string")
         }
-        client.complete(with: "".data(using: .utf8)!)
-        wait(for: [exp], timeout: 1)
-        XCTAssertNotNil(receivedError, "Expected to receive an error when client completes with empty string")
     }
     
     func test_fetchNewsDeliversFailure_whenClientCompletesWithInvalidString() {
+        
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
-        var receivedError: Error?
-        sut.fetchNews {
-            if case let Result.failure(error) = $0 {
-                receivedError = error
-                exp.fulfill()
-            }
+        let result = result(sut: sut) { client.complete(with: invalidString()) }
+        
+        switch result {
+        case .success:
+            XCTFail("Expected a failure but got \(result) instead")
+        case .failure(let receivedError):
+            XCTAssertNotNil(receivedError, "Expected to receive an error when client completes with invalid string")
         }
-        client.complete(with: invalidString())
-        wait(for: [exp], timeout: 1)
-        XCTAssertNotNil(receivedError, "Expected to receive an error when client completes with invalid string")
     }
     
     func test_fetchNewsDeliversNewsObject_asExpectedForSingleResponse() {
         
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
-        var receivedNews: [News]?
-        sut.fetchNews {
-            if case let Result.success(news) = $0 {
-                receivedNews = news
-                exp.fulfill()
-            }
-        }
-        client.complete(with: singleResponseData())
-        wait(for: [exp], timeout: 1)
+        let result = result(sut: sut) { client.complete(with: singleResponseData()) }
         
-        XCTAssertEqual(receivedNews?.count, 1, "Expected news count as 1")
+        switch result {
+        case let .success(news):
+            XCTAssertEqual(news.count, 1)
+        case .failure:
+            XCTFail("Expected a successful results with Single News, got \(result) instead")
+        }
     }
     
     func test_fetchNEwsDeliversManyNewsObject_onManyResponse() {
-        let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
-        var receivedNews: [News]?
-        sut.fetchNews {
-            if case let Result.success(news) = $0 {
-                receivedNews = news
-                exp.fulfill()
-            }
-        }
-        client.complete(with: manyResponseData(array: [0,1,2]))
-        wait(for: [exp], timeout: 1)
         
-        XCTAssertEqual(receivedNews?.count, 3, "Expected count for multiple response")
+        let (sut, client) = makeSUT()
+        let result = result(sut: sut) { client.complete(with: manyResponseData(array: [0,1,2])) }
+        
+        switch result {
+        case let .success(news):
+            XCTAssertEqual(news.count, 3, "Expected count for multiple response")
+        case .failure:
+            XCTFail("Expected a successful results with Single News, got \(result) instead")
+        }
     }
     
     func test_dto_workingAsExpected() {
+        
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
-        var receivedNews: [News]?
-        sut.fetchNews {
-            if case let Result.success(news) = $0 {
-                receivedNews = news
-                exp.fulfill()
+        let result = result(sut: sut) { client.complete(with: manyResponseData(array: [0,1,2])) }
+        
+        switch result {
+        case let .success(receivedNews):
+            receivedNews.enumerated().forEach {
+                test(for: $0.element, at: $0.offset)
             }
-        }
-        client.complete(with: manyResponseData(array: [0,1,2]))
-        wait(for: [exp], timeout: 1)
-        receivedNews?.enumerated().forEach {
-            test(for: $0.element, at: $0.offset)
+        case .failure:
+            XCTFail("Expected a successful results with Single News, got \(result) instead")
         }
     }
     
