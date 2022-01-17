@@ -29,7 +29,7 @@ class NewsApiLoaderTests: XCTestCase {
         
         switch result {
         case let .success(news):
-            XCTAssertEqual(news.count, 0)
+            XCTAssertEqual(news, [])
         case .failure:
             XCTFail("Expected a successful results with empty array, got \(result) instead")
         }
@@ -238,5 +238,11 @@ class HttpClientSpy: HTTPClient {
     
     func complete(with error: Error) {
         completion?(.failure(NSError(domain: "anyError", code: 0, userInfo: nil)))
+    }
+}
+
+extension News: Equatable {
+    public static func == (lhs: News, rhs: News) -> Bool {
+        lhs.id == rhs.id && lhs.title == rhs.title && lhs.abstract == rhs.abstract && lhs.publishedDate == rhs.publishedDate && lhs.author == rhs.author && lhs.url == rhs.url && lhs.imageURL == rhs.imageURL
     }
 }
