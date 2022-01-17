@@ -97,7 +97,7 @@ class NewsApiLoaderTests: XCTestCase {
         case let .success(news):
             XCTAssertEqual(news.count, 3, "Expected count for multiple response")
         case .failure:
-            XCTFail("Expected a successful results with Single News, got \(result) instead")
+            XCTFail("Expected a successful results with Many News, got \(result) instead")
         }
     }
     
@@ -112,7 +112,7 @@ class NewsApiLoaderTests: XCTestCase {
                 test(for: $0.element, at: $0.offset)
             }
         case .failure:
-            XCTFail("Expected a successful results with Single News, got \(result) instead")
+            XCTFail("Expected a successful result, got \(result) instead")
         }
     }
     
