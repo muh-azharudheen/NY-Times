@@ -24,4 +24,10 @@ class NewsListCell: UITableViewCell {
         labelAuthor?.text = item?.author
         labelDate?.text = item?.dateString
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        selectionStyle = .none
+    }
 }
