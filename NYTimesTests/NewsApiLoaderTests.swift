@@ -131,13 +131,13 @@ class NewsApiLoaderTests: XCTestCase {
         }
     }
     
-    // TODO: Update date formatting
     func test(for news: News, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertEqual(news.id, index, "Expected id to be same as from response")
         XCTAssertEqual(news.title, "title \(index)", "Expected Title to be same as from response")
         XCTAssertEqual(news.abstract, "abstract \(index)", "Expected Title to be same as from response")
         XCTAssertEqual(news.author, "author \(index)", "Expected Date to be empty")
         XCTAssertEqual(news.imageURL?.absoluteString,  "https://any-url\(index).com", "Expected image url is first url from metadata")
+        XCTAssertEqual(news.publishedDate, "2022-01-07".toDate())
     }
     
     private func emptyResponse() -> Data {
@@ -150,7 +150,7 @@ class NewsApiLoaderTests: XCTestCase {
             "url": "https://any-url-\(id).com",
             "title": "title \(id)",
             "abstract": "abstract \(id)",
-            "published_date": " ",
+            "published_date": "2022-01-07",
             "byline": "author \(id)",
             "media": [metadata(with: id)]
         ]
@@ -198,6 +198,14 @@ class NewsApiLoaderTests: XCTestCase {
     }
 }
 
+private extension String {
+    func toDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-DD"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.date(from: self) ?? Date()
+    }
+}
 
 class HttpClientSpy: HTTPClient {
     

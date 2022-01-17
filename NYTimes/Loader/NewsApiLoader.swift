@@ -69,7 +69,14 @@ extension NewsApiLoader {
 private extension NewsApiLoader.NewsResponse.NewsResult {
     
     func news() -> News {
-        News(id: id, title: title, abstract: abstract, author: byline, publishedDate: Date(), url: url, imageURL: media?.first?.metaData?.first?.url)
+        News(id: id, title: title, abstract: abstract, author: byline, publishedDate: dateFrom(published_date), url: url, imageURL: media?.first?.metaData?.first?.url)
+    }
+    
+    private func dateFrom(_ dateString: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-DD"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.date(from: dateString) ?? Date()
     }
 }
 
