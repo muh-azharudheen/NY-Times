@@ -39,6 +39,18 @@ extension NewsApiLoader {
     
     struct NewsResponse: Decodable {
         
+        struct MetaData: Decodable {
+            let url: URL?
+        }
+        
+        struct Media: Decodable {
+            
+            let metaData: [MetaData]?
+            enum CodingKeys: String, CodingKey {
+                case metaData = "media-metadata"
+            }
+        }
+        
         struct NewsResult: Decodable {
             let id: Int
             let url: URL
@@ -46,6 +58,7 @@ extension NewsApiLoader {
             let abstract: String
             let published_date: String
             let byline: String
+            let media: [Media]?
         }
         
         let status: String
@@ -56,7 +69,7 @@ extension NewsApiLoader {
 private extension NewsApiLoader.NewsResponse.NewsResult {
     
     func news() -> News {
-        News(id: id, title: title, abstract: abstract, author: byline, publishedDate: Date(), url: url, imageURL: nil)
+        News(id: id, title: title, abstract: abstract, author: byline, publishedDate: Date(), url: url, imageURL: media?.first?.metaData?.first?.url)
     }
 }
 
