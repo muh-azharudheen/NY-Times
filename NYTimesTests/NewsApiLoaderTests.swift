@@ -25,30 +25,29 @@ class NewsApiLoaderTests: XCTestCase {
     
     func test_fetchNews_deliversSuccessFully_whenClientCompletesWithSuccessfulResponse() {
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
-        sut.fetchNews {
-            if case Result.success = $0 {
-                exp.fulfill()
-            }
+        let result = result(sut: sut) { client.complete(with: emptyResponse()) }
+        
+        switch result {
+        case let .success(news):
+            XCTAssertEqual(news.count, 0)
+        case .failure:
+            XCTFail("Expected a successful results with empty array, got \(result) instead")
         }
-        client.complete(with: emptyResponse())
-        wait(for: [exp], timeout: 1)
     }
     
     func test_fetchNews_deliversFailure_whenClientCompletesWithFailureResponse() {
+        
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Waiting for service request to complete")
         let error = NSError(domain: "anyError", code: 0, userInfo: nil)
-        var receivedError: Error?
-        sut.fetchNews {
-            if case let Result.failure(error) = $0 {
-                receivedError = error
-                exp.fulfill()
-            }
+
+        let result = result(sut: sut) { client.complete(with: error) }
+
+        switch result {
+        case .success:
+            XCTFail("Expected a failure with \(error) but got \(result) instead")
+        case let .failure(receivedError):
+            XCTAssertEqual(error, receivedError as NSError?)
         }
-        client.complete(with: error)
-        wait(for: [exp], timeout: 1)
-        XCTAssertEqual(error, receivedError as NSError?, "Expected client error to be same as failure error")
     }
     
     func test_fetchNewsDeliversFailure_whenClientCompletesWithEmptyString() {
@@ -138,6 +137,22 @@ class NewsApiLoaderTests: XCTestCase {
         XCTAssertEqual(news.author, "author \(index)", "Expected Date to be empty")
         XCTAssertEqual(news.imageURL?.absoluteString,  "https://any-url\(index).com", "Expected image url is first url from metadata")
         XCTAssertEqual(news.publishedDate, "2022-01-07".toDate())
+    }
+    
+    func result(sut: NewsApiLoader, action: () -> Void, file: StaticString = #filePath, line: UInt = #line) -> NewsLoader.Result {
+        let exp = expectation(description: "Waiting for service request to complete")
+        var receivedResult: NewsLoader.Result?
+        sut.fetchNews {
+            receivedResult = $0
+            exp.fulfill()
+        }
+        action()
+        wait(for: [exp], timeout: 1.0)
+        guard let result = receivedResult else {
+            XCTFail("Expected result but didnt complete the request")
+            fatalError("Expected result but didnt complete the request")
+        }
+        return result
     }
     
     private func emptyResponse() -> Data {
