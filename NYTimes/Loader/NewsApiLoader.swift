@@ -9,9 +9,9 @@ import Foundation
 
 class NewsApiLoader: NewsLoader {
     
-    private let client: URLSessionHTTPClient
+    private let client: HTTPClient
     
-    init(client: URLSessionHTTPClient) {
+    init(client: HTTPClient) {
         self.client = client
     }
     
