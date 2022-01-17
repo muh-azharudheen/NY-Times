@@ -24,8 +24,8 @@
 		2EB7FA8B2794BA89005A1DC2 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA8A2794BA89005A1DC2 /* NewsListViewModel.swift */; };
 		2EB7FA8D27952464005A1DC2 /* NewsApiLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA8C27952464005A1DC2 /* NewsApiLoaderTests.swift */; };
 		2EB7FA8F27954497005A1DC2 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA8E27954497005A1DC2 /* URLSessionHTTPClient.swift */; };
-		2EB7FA91279544CA005A1DC2 /* URLSessionHttpClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA90279544CA005A1DC2 /* URLSessionHttpClientTests.swift */; };
 		2EB7FA932795456F005A1DC2 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA922795456F005A1DC2 /* URLProtocolStub.swift */; };
+		2EB7FA9527954717005A1DC2 /* URLSessionHttpClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7FA9427954717005A1DC2 /* URLSessionHttpClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,8 @@
 		2EB7FA8A2794BA89005A1DC2 /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
 		2EB7FA8C27952464005A1DC2 /* NewsApiLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiLoaderTests.swift; sourceTree = "<group>"; };
 		2EB7FA8E27954497005A1DC2 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
-		2EB7FA90279544CA005A1DC2 /* URLSessionHttpClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpClientTests.swift; sourceTree = "<group>"; };
 		2EB7FA922795456F005A1DC2 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		2EB7FA9427954717005A1DC2 /* URLSessionHttpClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLSessionHttpClientTests.swift; path = ../../URLSessionHttpClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +160,7 @@
 				2EB7FA872794BA3D005A1DC2 /* NewsListViewModelTests.swift */,
 				2EB7FA8C27952464005A1DC2 /* NewsApiLoaderTests.swift */,
 				2EB7FA922795456F005A1DC2 /* URLProtocolStub.swift */,
-				2EB7FA90279544CA005A1DC2 /* URLSessionHttpClientTests.swift */,
+				2EB7FA9427954717005A1DC2 /* URLSessionHttpClientTests.swift */,
 			);
 			path = NYTimesTests;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				2EB7FA7F2794954A005A1DC2 /* NewsListViewControllerTests.swift in Sources */,
 				2EB7FA8D27952464005A1DC2 /* NewsApiLoaderTests.swift in Sources */,
 				2EB7FA882794BA3D005A1DC2 /* NewsListViewModelTests.swift in Sources */,
-				2EB7FA91279544CA005A1DC2 /* URLSessionHttpClientTests.swift in Sources */,
+				2EB7FA9527954717005A1DC2 /* URLSessionHttpClientTests.swift in Sources */,
 				2EB7FA932795456F005A1DC2 /* URLProtocolStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
