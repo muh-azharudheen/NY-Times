@@ -17,6 +17,12 @@ class NewsApiLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestCount, 0, "Expected initialization doesNot Request response from server")
     }
     
+    func test_fetchNews_RequestResponseFromServer() {
+        let (sut, client) = makeSUT()
+        sut.fetchNews(completion: { _ in })
+        XCTAssertEqual(client.requestCount, 1, "Expected fetching news requests response from server")
+    }
+    
     
     private func makeSUT() -> (NewsApiLoader, HttpClientSpy) {
         let client = HttpClientSpy()
@@ -27,16 +33,9 @@ class NewsApiLoaderTests: XCTestCase {
 
 class HttpClientSpy: HTTPClient {
     
-    
-    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-        
-    }
-    
-    func get<T>(from url: URL, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
-        
-    }
-    
-    
     var requestCount = 0
     
+    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
+        requestCount += 1
+    }
 }
