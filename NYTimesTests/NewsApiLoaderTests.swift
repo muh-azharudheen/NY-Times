@@ -81,12 +81,74 @@ class NewsApiLoaderTests: XCTestCase {
         XCTAssertNotNil(receivedError, "Expected to receive an error when client completes with invalid string")
     }
     
+    func test_fetchNewsDeliversNewsObject_asExpectedForSingleResponse() {
+        
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Waiting for service request to complete")
+        var receivedNews: [News]?
+        sut.fetchNews {
+            if case let Result.success(news) = $0 {
+                receivedNews = news
+                exp.fulfill()
+            }
+        }
+        client.complete(with: singleResponseData())
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(receivedNews?.count, 1, "Expected news count as 1")
+    }
+    
+    func test_fetchNEwsDeliversManyNewsObject_onManyResponse() {
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Waiting for service request to complete")
+        var receivedNews: [News]?
+        sut.fetchNews {
+            if case let Result.success(news) = $0 {
+                receivedNews = news
+                exp.fulfill()
+            }
+        }
+        client.complete(with: manyResponseData(array: [0,1,2]))
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(receivedNews?.count, 3, "Expected count for multiple response")
+    }
+    
+    
     private func emptyResponse() -> Data {
         emptyResponseString().data(using: .utf8)!
     }
     
+    private func resultObject(id: Int) -> [String: Any] {
+        [
+            "id": id,
+            "url": "https://any-url-\(id).com",
+            "title": "title \(id)",
+            "abstract": "abstract \(id)",
+            "published_date": " ",
+            "byline": "author \(id)"
+        ]
+    }
+    
+    private func responseString(idArray: [Int]) -> [String: Any] {
+        let dict = idArray.map { resultObject(id: $0) }
+        return ["status": "OK", "copyright": "Copyright (c) 2022 The New York Times Company.  All Rights Reserved.", "num_results": idArray.count, "results": dict
+        ]
+    }
+    
     private func emptyResponseString() -> String {
         "{\"status\":\"OK\",\"copyright\":\"Copyright (c) 2022 The New York Times Company.  All Rights Reserved.\",\"num_results\":20,\"results\":[]}"
+    }
+    
+    private func manyResponseData(array: [Int]) -> Data {
+        guard let data = try? JSONSerialization.data(withJSONObject: responseString(idArray: array), options: .sortedKeys) else { return Data() }
+        return data
+
+    }
+    
+    private func singleResponseData() -> Data {
+        guard let data = try? JSONSerialization.data(withJSONObject: responseString(idArray: [0]), options: .sortedKeys) else { return Data() }
+        return data
     }
     
     private func invalidString() -> Data {
