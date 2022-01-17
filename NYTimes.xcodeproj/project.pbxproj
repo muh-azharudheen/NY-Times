@@ -156,11 +156,11 @@
 		2EB7FA7727949546005A1DC2 /* NYTimesTests */ = {
 			isa = PBXGroup;
 			children = (
+				2EB7FA9827954C91005A1DC2 /* Helpers */,
 				2EB7FA412792A3B7005A1DC2 /* NewsListViewControllerTests.swift */,
 				2EB7FA872794BA3D005A1DC2 /* NewsListViewModelTests.swift */,
-				2EB7FA8C27952464005A1DC2 /* NewsApiLoaderTests.swift */,
 				2EB7FA9627954C4E005A1DC2 /* URLSessionHttpClientTests.swift */,
-				2EB7FA922795456F005A1DC2 /* URLProtocolStub.swift */,
+				2EB7FA8C27952464005A1DC2 /* NewsApiLoaderTests.swift */,
 			);
 			path = NYTimesTests;
 			sourceTree = "<group>";
@@ -187,6 +187,14 @@
 				2EB7FA8A2794BA89005A1DC2 /* NewsListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EB7FA9827954C91005A1DC2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7FA922795456F005A1DC2 /* URLProtocolStub.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
