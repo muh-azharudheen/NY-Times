@@ -33,10 +33,3 @@ class NewsListCell: UITableViewCell {
         selectionStyle = .none
     }
 }
-
-private extension UIImageView {
-    
-    func loadImage(with url: URL?) {
-        
-    }
-}
