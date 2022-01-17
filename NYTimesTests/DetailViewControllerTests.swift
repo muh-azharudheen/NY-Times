@@ -9,7 +9,7 @@ import XCTest
 @testable import NYTimes
 import WebKit
 
-class DetailViewControllerTests: XCTestCase {
+final class DetailViewControllerTests: XCTestCase {
     
     func test_doesNotLoadWebViewOnInitialization() {
         let sut = makeSUT()

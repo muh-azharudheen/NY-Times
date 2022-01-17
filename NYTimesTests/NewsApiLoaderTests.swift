@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import NYTimes
 
-class NewsApiLoaderTests: XCTestCase {
+final class NewsApiLoaderTests: XCTestCase {
     
     func test_initialization_doesNotRequestResponseFromServer() {
         let (_, client) = makeSUT()

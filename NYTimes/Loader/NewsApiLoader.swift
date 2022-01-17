@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsApiLoader: NewsLoader {
+final class NewsApiLoader: NewsLoader {
     
     private let client: HTTPClient
     
@@ -35,7 +35,7 @@ class NewsApiLoader: NewsLoader {
     }
 }
 
-extension NewsApiLoader {
+private extension NewsApiLoader {
     
     struct NewsResponse: Decodable {
         

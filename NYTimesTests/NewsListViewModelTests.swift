@@ -11,18 +11,18 @@ import XCTest
 class NewsListViewModelTests: XCTestCase {
     
     func test_initialization_doesNotRequestNewsFromLoader() {
-        let (_, loader) = makeSut()
+        let (_, loader) = makeSUT()
         XCTAssertEqual(loader.fetchNewsCount, 0, "Expected initialization doesNot fetch News")
     }
     
     func test_loadList_requestNewsFromLoader() {
-        let (sut, loader) = makeSut()
+        let (sut, loader) = makeSUT()
         sut.loadList { _ in }
         XCTAssertEqual(loader.fetchNewsCount, 1, "Expected loadList calls for fetching News")
     }
     
     func test_loadListCompletesWithSuccessOnSuccesfullDeliveryOfNews() {
-        let (sut, loader) = makeSut()
+        let (sut, loader) = makeSUT()
         let exp = expectation(description: "Waiting for newsloader to complete")
         sut.loadList {
             if case Result.success = $0 {
@@ -34,7 +34,7 @@ class NewsListViewModelTests: XCTestCase {
     }
     
     func test_loadListCompleteWithFailureOnFailureOfNewsDelivery() {
-        let (sut, loader) = makeSut()
+        let (sut, loader) = makeSUT()
         let exp = expectation(description: "Waiting for newsloader to complete")
         let error = NSError(domain: "anyError", code: 0, userInfo: nil)
         var receivedError: Error?
@@ -51,7 +51,7 @@ class NewsListViewModelTests: XCTestCase {
     
     func test_numberOfLists_onSuccessfullyLoadedNews() {
         
-        let (sut, loader) = makeSut()
+        let (sut, loader) = makeSUT()
         sut.loadList { _ in }
         
         loader.complete(with: [])
@@ -73,7 +73,7 @@ class NewsListViewModelTests: XCTestCase {
     
     func test_newsListOnSuccessfullyLoadedNews() {
         
-        let (sut, loader) = makeSut()
+        let (sut, loader) = makeSUT()
         sut.loadList { _ in }
         
         let news0 = makeNews(for: 0)
@@ -93,7 +93,7 @@ class NewsListViewModelTests: XCTestCase {
     
     func test_urlForIndex_forRespectiveList() {
         
-        let (sut, loader) = makeSut()
+        let (sut, loader) = makeSUT()
         sut.loadList { _ in }
         
         let news0 = makeNews(for: 0, url: URL(string: "https://any-url-0.com")!)
@@ -108,7 +108,7 @@ class NewsListViewModelTests: XCTestCase {
     }
     
     // MARK: Helpers
-    func makeSut() -> (NewsListViewModel, NewsLoaderSpy) {
+    private func makeSUT() -> (NewsListViewModel, NewsLoaderSpy) {
         let loader = NewsLoaderSpy()
         let sut = NewsListViewModel(loader: loader)
         return (sut, loader)
@@ -125,7 +125,7 @@ class NewsListViewModelTests: XCTestCase {
         XCTAssertEqual(displayStirng(from: news.publishedDate), list.dateString, "Expecte list abstract is same as news abstract")
     }
     
-    func displayStirng(from date: Date) -> String {
+    private func displayStirng(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "DD-MMM"
         formatter.locale = Locale.current
@@ -133,7 +133,7 @@ class NewsListViewModelTests: XCTestCase {
     }
 }
 
-class NewsLoaderSpy: NewsLoader {
+private final class NewsLoaderSpy: NewsLoader {
     
     var fetchNewsCount = 0
     var completion: ((NewsLoader.Result) -> Void)?

@@ -8,7 +8,7 @@
 import XCTest
 @testable import NYTimes
 
-class URLSessionHTTPClientTests: XCTestCase {
+final class URLSessionHTTPClientTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()

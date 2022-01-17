@@ -22,7 +22,7 @@ struct NewsList {
     let dateString: String
 }
 
-class NewsListViewController: UITableViewController {
+final class NewsListViewController: UITableViewController {
     
     private var viewModel: NewsListViewModelProtocol
     private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: tableView.frame)
@@ -83,7 +83,7 @@ private extension NewsListViewController {
         }
     }
     
-    private func didThrowError() {
+    func didThrowError() {
         let alert = UIAlertController(title: "Error", message: "An Unknown Error Occured", preferredStyle: .alert)
         present(alert, animated: true, completion: nil)
     }

@@ -8,7 +8,7 @@
 import XCTest
 @testable import NYTimes
 
-class NewsListViewControllerTests: XCTestCase {
+final class NewsListViewControllerTests: XCTestCase {
     
     func test_loadNews_doesNotCallOnInitialization() {
         let (_, viewModel) = makeSUT()
@@ -193,7 +193,7 @@ private extension NewsListViewController {
 
 private extension NewsListViewControllerTests {
     
-    class NewsListViewModelSpy: NewsListViewModelProtocol {
+    final class NewsListViewModelSpy: NewsListViewModelProtocol {
 
         var lists = [NewsList]()
         

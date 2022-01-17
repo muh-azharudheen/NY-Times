@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     private let url: URL
     private (set) lazy var webView = WKWebView()
