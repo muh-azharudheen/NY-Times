@@ -18,12 +18,14 @@ class NewsApiLoader: NewsLoader {
     func fetchNews(completion: @escaping (NewsLoader.Result) -> Void) {
         guard let url = url() else { return }
         client.get(from: url) { (result: (Result<NewsResponse, Error>)) in
-            switch result {
-            case .success(let response):
-                let news = NewsResponse.dto(response)
-                completion(.success(news))
-            case .failure(let error):
-                completion(.failure(error))
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    let news = NewsResponse.dto(response)
+                    completion(.success(news))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

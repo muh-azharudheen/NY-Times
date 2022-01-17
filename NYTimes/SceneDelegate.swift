@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        UIViewController()
+        let loader = NewsApiLoader(client: URLSessionHTTPClient(session: URLSession.shared))
+        let viewModel = NewsListViewModel(loader: loader)
+        return NewsListViewController(viewModel: viewModel)
     }
 }
