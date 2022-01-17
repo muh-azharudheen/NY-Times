@@ -85,6 +85,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E02E92727955A210004AF19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7FA6127943681005A1DC2 /* News.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E02E92827955A3D0004AF19 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7FA0627920AE8005A1DC2 /* AppDelegate.swift */,
+				2EB7FA0827920AE8005A1DC2 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		2E02E92927955A4C0004AF19 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7FA0F27920AE9005A1DC2 /* Assets.xcassets */,
+				2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */,
+				2EB7FA1427920AE9005A1DC2 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		2EB7F9FA27920AE8005A1DC2 = {
 			isa = PBXGroup;
 			children = (
@@ -106,16 +133,14 @@
 		2EB7FA0527920AE8005A1DC2 /* NYTimes */ = {
 			isa = PBXGroup;
 			children = (
-				2EB7FA0627920AE8005A1DC2 /* AppDelegate.swift */,
-				2EB7FA0827920AE8005A1DC2 /* SceneDelegate.swift */,
+				2E02E92827955A3D0004AF19 /* AppDelegate */,
+				2E02E92727955A210004AF19 /* Model */,
+				2EB7FA1B27920F66005A1DC2 /* View */,
 				2EB7FA892794BA76005A1DC2 /* ViewModel */,
-				2EB7FA822794B6D5005A1DC2 /* Helpers */,
 				2EB7FA5E27943662005A1DC2 /* Loader */,
 				2EB7FA5B27942CCB005A1DC2 /* Service */,
-				2EB7FA1B27920F66005A1DC2 /* View */,
-				2EB7FA0F27920AE9005A1DC2 /* Assets.xcassets */,
-				2EB7FA1127920AE9005A1DC2 /* LaunchScreen.storyboard */,
-				2EB7FA1427920AE9005A1DC2 /* Info.plist */,
+				2EB7FA822794B6D5005A1DC2 /* Helpers */,
+				2E02E92927955A4C0004AF19 /* SupportingFiles */,
 			);
 			path = NYTimes;
 			sourceTree = "<group>";
@@ -153,7 +178,6 @@
 			children = (
 				2EB7FA5F27943671005A1DC2 /* NewsLoader.swift */,
 				2EB7FA802794974E005A1DC2 /* NewsApiLoader.swift */,
-				2EB7FA6127943681005A1DC2 /* News.swift */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -478,7 +502,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NYTimes/Info.plist;
+				INFOPLIST_FILE = NYTimes/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -504,7 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NYTimes/Info.plist;
+				INFOPLIST_FILE = NYTimes/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
