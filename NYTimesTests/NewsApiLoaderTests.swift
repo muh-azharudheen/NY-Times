@@ -114,6 +114,30 @@ class NewsApiLoaderTests: XCTestCase {
         XCTAssertEqual(receivedNews?.count, 3, "Expected count for multiple response")
     }
     
+    func test_dto_workingAsExpected() {
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Waiting for service request to complete")
+        var receivedNews: [News]?
+        sut.fetchNews {
+            if case let Result.success(news) = $0 {
+                receivedNews = news
+                exp.fulfill()
+            }
+        }
+        client.complete(with: manyResponseData(array: [0,1,2]))
+        wait(for: [exp], timeout: 1)
+        receivedNews?.enumerated().forEach {
+            test(for: $0.element, at: $0.offset)
+        }
+    }
+    
+    // TODO: Update date formatting
+    func test(for news: News, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(news.id, index, "Expected id to be same as from response")
+        XCTAssertEqual(news.title, "title \(index)", "Expected Title to be same as from response")
+        XCTAssertEqual(news.abstract, "abstract \(index)", "Expected Title to be same as from response")
+        XCTAssertEqual(news.author, "author \(index)", "Expected Date to be empty")
+    }
     
     private func emptyResponse() -> Data {
         emptyResponseString().data(using: .utf8)!
