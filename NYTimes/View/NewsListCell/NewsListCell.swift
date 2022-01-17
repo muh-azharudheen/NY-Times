@@ -11,13 +11,17 @@ class NewsListCell: UITableViewCell {
     
     var item: NewsList? {
         didSet {
-            labelTitle?.text = item?.title
-            labelAuthor?.text = item?.author
-            labelDate?.text = item?.dateString
+            configure()
         }
     }
     
     @IBOutlet private (set) weak var labelTitle: UILabel?
     @IBOutlet private (set) weak var labelAuthor: UILabel?
     @IBOutlet private (set) weak var labelDate: UILabel?
+    
+    private func configure() {
+        labelTitle?.text = item?.title
+        labelAuthor?.text = item?.author
+        labelDate?.text = item?.dateString
+    }
 }
