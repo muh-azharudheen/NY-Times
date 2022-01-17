@@ -31,7 +31,6 @@ extension HTTPClient {
             }
         }
     }
-    
 }
 
 class URLSessionHTTPClient: HTTPClient {

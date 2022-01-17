@@ -33,7 +33,7 @@ class NewsApiLoader: NewsLoader {
     }
 }
 
-private extension NewsApiLoader {
+extension NewsApiLoader {
     
     struct NewsResponse: Decodable {
         
