@@ -15,6 +15,7 @@ class NewsListCell: UITableViewCell {
         }
     }
     
+    @IBOutlet private (set) weak var imageViewIcon: UIImageView?
     @IBOutlet private (set) weak var labelTitle: UILabel?
     @IBOutlet private (set) weak var labelAuthor: UILabel?
     @IBOutlet private (set) weak var labelDate: UILabel?
@@ -23,11 +24,19 @@ class NewsListCell: UITableViewCell {
         labelTitle?.text = item?.title
         labelAuthor?.text = item?.author
         labelDate?.text = item?.dateString
+        imageViewIcon?.loadImage(with: item?.imageURL)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         selectionStyle = .none
+    }
+}
+
+private extension UIImageView {
+    
+    func loadImage(with url: URL?) {
+        
     }
 }

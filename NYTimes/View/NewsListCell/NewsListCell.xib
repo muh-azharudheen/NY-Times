@@ -61,6 +61,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imageViewIcon" destination="qUT-Zi-akz" id="0ZP-4t-TXv"/>
                 <outlet property="labelAuthor" destination="Rjl-4w-zKc" id="7Kc-Mo-w0j"/>
                 <outlet property="labelDate" destination="qdS-Bb-EB0" id="ab7-qb-Us7"/>
                 <outlet property="labelTitle" destination="Nkl-ht-cP5" id="mzo-zM-y8x"/>
