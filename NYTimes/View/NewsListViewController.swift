@@ -25,7 +25,7 @@ struct NewsList {
 class NewsListViewController: UITableViewController {
     
     private var viewModel: NewsListViewModelProtocol
-    private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: view.frame)
+    private (set) lazy var activityIndicatorView = UIActivityIndicatorView(frame: tableView.frame)
     
     init(viewModel: NewsListViewModelProtocol) {
         self.viewModel = viewModel
@@ -40,6 +40,7 @@ class NewsListViewController: UITableViewController {
         super.viewDidLoad()
         
         setupTableView()
+        setupActivityIndicator()
         activityIndicatorView.startAnimating()
         loadList()
     }
@@ -64,6 +65,10 @@ private extension NewsListViewController {
     
     func setupTableView() {
         tableView.registerNib(NewsListCell.self)
+    }
+    
+    func setupActivityIndicator() {
+        tableView.backgroundView = activityIndicatorView
     }
     
     func loadList() {
